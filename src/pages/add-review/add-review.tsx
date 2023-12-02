@@ -40,8 +40,6 @@ const AddReviewPage: React.FC = () => {
         <Poster
           src={film.imageSrc}
           alt={film.alt}
-          width={film.width}
-          height={film.height}
           className="film-card__poster--small"
         />
       </div>
