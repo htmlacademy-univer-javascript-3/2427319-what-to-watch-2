@@ -1,25 +1,27 @@
-import Catalog from '../../components/catalog/catalog.tsx';
-import FilmCard from '../../components/film-card/film-card.tsx';
-import Footer from '../../components/footer/footer.tsx';
-import { smallCardList } from '../../data/constants/small-card-list.ts';
+import React from 'react';
+import { FilmCard } from '../../components/film-card';
+import { Catalog } from '../../components/catalog';
+import { Footer } from '../../components/footer';
 
-const Main: React.FC = () => (
-  <>
-    <FilmCard
-      myListCount={9}
-      film={{
-        poster: { src: 'img/bg-the-grand-budapest-hotel.jpg', alt: 'The Grand Budapest Hotel' },
-        title: 'The Grand Budapest Hotel',
-        genre: 'Drama',
-        year: 2014
-      }}
-    />
-
-    <div className="page-content">
-      <Catalog showGenres cardList={smallCardList}/>
-      <Footer/>
-    </div>
-  </>
-);
-
-export default Main;
+const MainPage: React.FC = () => {
+  const film = {
+    img: {
+      src: 'img/the-grand-budapest-hotel-poster.jpg',
+      alt: 'The Grand Budapest Hotel',
+      bgSrc: 'img/bg-the-grand-budapest-hotel.jpg',
+    },
+    title: 'The Grand Budapest Hotel',
+    genre: 'Drama',
+    year: 2014,
+  };
+  return (
+    <>
+      <FilmCard film={film} />
+      <div className="page-content">
+        <Catalog />
+        <Footer />
+      </div>
+    </>
+  );
+};
+export const Main = React.memo(MainPage);
