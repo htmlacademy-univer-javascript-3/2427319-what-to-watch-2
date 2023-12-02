@@ -1,36 +1,41 @@
-import React, { useCallback } from 'react';
-import { FilmProps } from '../../../../mocs/films';
+import React, {useState} from 'react';
+import {FilmInfoProps} from '../../../../mocs/films';
 import { Link } from 'react-router-dom';
 import { RouteLinks } from '../../../../router/consts';
+import {VideoPlayer} from '../../../video-player/video-player.tsx';
 
 interface SmallFilmCardProps {
-  film: FilmProps;
-  isActive?: boolean;
-  onMouseEnter: (id: number) => void;
-  onMouseLeave: () => void;
+  film: FilmInfoProps;
 }
-
+const DEFAULT_WIDTH = 218;
+const DEFAULT_HEIGHT = 327;
 const SmallFilmCardComponent: React.FC<SmallFilmCardProps> = ({
   film,
-  isActive,
-  onMouseEnter,
-  onMouseLeave,
 }) => {
-  const { title, imageSrc, alt, width, height, id } = film;
+  const { title, imageSrc, alt, id,video, bgSrc } = film;
+  const [isActive, setIsActive] = useState<boolean>(false);
+  const handleHover = () => {
+    setIsActive(true);
+  };
 
-  const handleMouseEnter = useCallback(() => {
-    onMouseEnter(id);
-  }, [id, onMouseEnter]);
+  const handleLeave = () => {
+    setIsActive(false);
+  };
 
   return (
     <article
       className={'small-film-card catalog__films-card'}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={onMouseLeave}
-      data-active={isActive}
+      onMouseEnter={handleHover}
+      onMouseLeave={handleLeave}
+      data-active={Boolean(isActive)}
     >
+
       <div className="small-film-card__image">
-        <img src={imageSrc} alt={alt} width={width} height={height} />
+        {isActive ? (
+          <VideoPlayer src={video} poster={bgSrc} isActive={isActive}/>
+        ) : (
+          <img src={imageSrc} alt={alt} width={DEFAULT_WIDTH} height={DEFAULT_HEIGHT} />
+        )}
       </div>
       <h3 className="small-film-card__title">
         <Link className="small-film-card__link" to={`${RouteLinks.FILMS}/${id}`}>

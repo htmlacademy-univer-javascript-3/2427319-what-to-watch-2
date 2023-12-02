@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { filmsInfo } from '../../../../mocs/films';
 import { SmallFilmCard } from './small-film-card';
 
@@ -8,30 +8,15 @@ interface FilmsListComponentProps {
 
 const FilmsListComponent: React.FC<FilmsListComponentProps> = ({
   length = filmsInfo.length,
-}) => {
-  const [activeFilm, setActiveFilm] = useState<number | null>(null);
-
-  const handleCardHover = (filmId: number) => {
-    setActiveFilm(filmId);
-  };
-
-  const handleCardLeave = () => {
-    setActiveFilm(null);
-  };
-
-  return (
-    <div className="catalog__films-list">
-      {filmsInfo.slice(0, length).map((film) => (
-        <SmallFilmCard
-          film={film}
-          key={film.id}
-          isActive={film.id === activeFilm}
-          onMouseEnter={handleCardHover}
-          onMouseLeave={handleCardLeave}
-        />
-      ))}
-    </div>
-  );
-};
+}) => (
+  <div className="catalog__films-list">
+    {filmsInfo.slice(0, length).map((film) => (
+      <SmallFilmCard
+        film={film}
+        key={film.id}
+      />
+    ))}
+  </div>
+);
 
 export const FilmsList = React.memo(FilmsListComponent);
