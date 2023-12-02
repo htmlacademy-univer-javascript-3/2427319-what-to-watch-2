@@ -1,5 +1,3 @@
-const DEFAULT_WIDTH = 218;
-const DEFAULT_HEIGHT = 327;
 
 
 export interface FilmProps {
@@ -7,8 +5,6 @@ export interface FilmProps {
   title: string;
   imageSrc: string;
   alt: string;
-  width: number;
-  height: number;
 }
 interface FilmDescription {
   info: string;
@@ -35,8 +31,6 @@ export const filmsInfo: FilmInfoProps[] = [
     alt: 'Fantastic Beasts: The Crimes of Grindelwald',
     video:
       'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
-    width: DEFAULT_WIDTH,
-    height: DEFAULT_HEIGHT,
     genre: 'Horror',
     year: 2018,
     rating: 7.3,
@@ -55,8 +49,6 @@ export const filmsInfo: FilmInfoProps[] = [
     alt: 'Bohemian Rhapsody',
     video:
       'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
-    width: DEFAULT_WIDTH,
-    height: DEFAULT_HEIGHT,
     genre: 'Drama',
     year: 2018,
     rating: 8.0,
@@ -75,8 +67,6 @@ export const filmsInfo: FilmInfoProps[] = [
     alt: 'Macbeth',
     video:
       'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
-    width: DEFAULT_WIDTH,
-    height: DEFAULT_HEIGHT,
     genre: 'Drama',
     year: 2015,
     rating: 6.6,
@@ -95,8 +85,6 @@ export const filmsInfo: FilmInfoProps[] = [
     bgSrc: 'img/bg-the-grand-budapest-hotel.jpg',
     video:
       'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
-    width: DEFAULT_WIDTH,
-    height: DEFAULT_HEIGHT,
     genre: 'Drama',
     year: 2004,
     rating: 7.5,
@@ -115,8 +103,6 @@ export const filmsInfo: FilmInfoProps[] = [
     bgSrc: 'img/bg-the-grand-budapest-hotel.jpg',
     video:
       'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
-    width: DEFAULT_WIDTH,
-    height: DEFAULT_HEIGHT,
     genre: 'Drama',
     year: 2011,
     rating: 7.5,
@@ -135,8 +121,6 @@ export const filmsInfo: FilmInfoProps[] = [
     bgSrc: 'img/bg-the-grand-budapest-hotel.jpg',
     video:
       'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
-    width: DEFAULT_WIDTH,
-    height: DEFAULT_HEIGHT,
     genre: 'Comedy',
     year: 2014,
     rating: 7.7,
@@ -155,8 +139,6 @@ export const filmsInfo: FilmInfoProps[] = [
     bgSrc: 'img/bg-the-grand-budapest-hotel.jpg',
     video:
       'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
-    width: DEFAULT_WIDTH,
-    height: DEFAULT_HEIGHT,
     genre: 'Documentary',
     year: 2015,
     rating: 8.0,
@@ -175,8 +157,6 @@ export const filmsInfo: FilmInfoProps[] = [
     bgSrc: 'img/bg-the-grand-budapest-hotel.jpg',
     video:
       'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
-    width: DEFAULT_WIDTH,
-    height: DEFAULT_HEIGHT,
     genre: 'Comedy',
     year: 2003,
     rating: 6.2,
@@ -195,8 +175,6 @@ export const filmsInfo: FilmInfoProps[] = [
     bgSrc: 'img/bg-the-grand-budapest-hotel.jpg',
     video:
       'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
-    width: DEFAULT_WIDTH,
-    height: DEFAULT_HEIGHT,
     genre: 'Horror',
     year: 2010,
     rating: 8.2,
@@ -215,8 +193,6 @@ export const filmsInfo: FilmInfoProps[] = [
     bgSrc: 'img/bg-the-grand-budapest-hotel.jpg',
     video:
       'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
-    width: DEFAULT_WIDTH,
-    height: DEFAULT_HEIGHT,
     genre: 'Crime',
     year: 1994,
     rating: 8.9,
@@ -235,8 +211,6 @@ export const filmsInfo: FilmInfoProps[] = [
     bgSrc: 'img/bg-the-grand-budapest-hotel.jpg',
     video:
       'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
-    width: DEFAULT_WIDTH,
-    height: DEFAULT_HEIGHT,
     genre: 'Crime',
     year: 2007,
     rating: 8.1,
@@ -255,8 +229,6 @@ export const filmsInfo: FilmInfoProps[] = [
     bgSrc: 'img/bg-the-grand-budapest-hotel.jpg',
     video:
       'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
-    width: DEFAULT_WIDTH,
-    height: DEFAULT_HEIGHT,
     genre: 'Comedy',
     year: 2000,
     rating: 8.3,
@@ -275,8 +247,6 @@ export const filmsInfo: FilmInfoProps[] = [
     bgSrc: 'img/bg-the-grand-budapest-hotel.jpg',
     video:
       'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
-    width: DEFAULT_WIDTH,
-    height: DEFAULT_HEIGHT,
     genre: 'Comedy',
     year: 2012,
     rating: 7.8,
@@ -295,8 +265,6 @@ export const filmsInfo: FilmInfoProps[] = [
     bgSrc: 'img/bg-the-grand-budapest-hotel.jpg',
     video:
       'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
-    width: DEFAULT_WIDTH,
-    height: DEFAULT_HEIGHT,
     genre: 'Documentary',
     year: 1997,
     rating: 7.0,
@@ -315,8 +283,6 @@ export const filmsInfo: FilmInfoProps[] = [
     bgSrc: 'img/bg-the-grand-budapest-hotel.jpg',
     video:
       'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
-    width: DEFAULT_WIDTH,
-    height: DEFAULT_HEIGHT,
     genre: 'Sci-Fi',
     year: 2016,
     rating: 6.6,
@@ -335,8 +301,6 @@ export const filmsInfo: FilmInfoProps[] = [
     bgSrc: 'img/bg-the-grand-budapest-hotel.jpg',
     video:
       'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
-    width: DEFAULT_WIDTH,
-    height: DEFAULT_HEIGHT,
     genre: 'Sci-Fi',
     year: 2005,
     rating: 6.5,
@@ -355,8 +319,6 @@ export const filmsInfo: FilmInfoProps[] = [
     video:
       'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
     bgSrc: 'img/bg-the-grand-budapest-hotel.jpg',
-    width: DEFAULT_WIDTH,
-    height: DEFAULT_HEIGHT,
     genre: 'Kids & Family',
     year: 2007,
     rating: 7.2,
@@ -375,8 +337,6 @@ export const filmsInfo: FilmInfoProps[] = [
     bgSrc: 'img/bg-the-grand-budapest-hotel.jpg',
     video:
       'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
-    width: DEFAULT_WIDTH,
-    height: DEFAULT_HEIGHT,
     genre: 'Drama',
     year: 1992,
     rating: 7.2,
@@ -395,8 +355,6 @@ export const filmsInfo: FilmInfoProps[] = [
     bgSrc: 'img/bg-the-grand-budapest-hotel.jpg',
     video:
       'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
-    width: DEFAULT_WIDTH,
-    height: DEFAULT_HEIGHT,
     genre: 'Crime',
     year: 2017,
     rating: 8.6,
@@ -415,8 +373,6 @@ export const filmsInfo: FilmInfoProps[] = [
     bgSrc: 'img/bg-the-grand-budapest-hotel.jpg',
     video:
       'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
-    width: DEFAULT_WIDTH,
-    height: DEFAULT_HEIGHT,
     genre: 'Sci-Fi',
     year: 2016,
     rating: 6.6,
@@ -435,14 +391,12 @@ export const filmsInfo: FilmInfoProps[] = [
     bgSrc: 'img/bg-the-grand-budapest-hotel.jpg',
     video:
       'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
-    width: DEFAULT_WIDTH,
-    height: DEFAULT_HEIGHT,
     genre: 'Drama',
     year: 2014,
     rating: 8.9,
     ratingCount: 240,
     description: {
-      info: `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustaves friend and protege. 
+      info: `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustaves friend and protege.
         \nGustave prides himself on providing first-class service to the hotels guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustaves lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`,
       director: 'Wes Anderson',
       starring: 'Bill Murray, Edward Norton, Jude Law, Willem Dafoe, and other',
