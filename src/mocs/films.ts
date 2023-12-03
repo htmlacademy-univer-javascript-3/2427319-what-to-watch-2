@@ -17,9 +17,10 @@ export interface FilmInfoProps extends FilmProps {
   year?: number;
   rating?: number;
   ratingCount?: number;
-  description?: FilmDescription;
+  description: FilmDescription;
   bgSrc: string;
   video: string;
+  totalTime: string;
 }
 
 export const filmsInfo: FilmInfoProps[] = [
@@ -35,6 +36,7 @@ export const filmsInfo: FilmInfoProps[] = [
     year: 2018,
     rating: 7.3,
     ratingCount: 3500,
+    totalTime: '1 h 39 m',
     description: {
       info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       director: 'David Yates',
@@ -53,6 +55,7 @@ export const filmsInfo: FilmInfoProps[] = [
     year: 2018,
     rating: 8.0,
     ratingCount: 4500,
+    totalTime: '1 h 39 m',
     description: {
       info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       director: 'Bryan Singer',
@@ -71,6 +74,7 @@ export const filmsInfo: FilmInfoProps[] = [
     year: 2015,
     rating: 6.6,
     ratingCount: 2800,
+    totalTime: '1 h 36 m',
     description: {
       info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       director: 'Justin Kurzel',
@@ -89,6 +93,7 @@ export const filmsInfo: FilmInfoProps[] = [
     year: 2004,
     rating: 7.5,
     ratingCount: 3200,
+    totalTime: '1 h 36 m',
     description: {
       info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       director: 'Martin Scorsese',
@@ -107,6 +112,7 @@ export const filmsInfo: FilmInfoProps[] = [
     year: 2011,
     rating: 7.5,
     ratingCount: 2700,
+    totalTime: '1 h 36 m',
     description: {
       info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       director: 'Lynne Ramsay',
@@ -114,6 +120,7 @@ export const filmsInfo: FilmInfoProps[] = [
     },
   },
   {
+    totalTime: '1 h 36 m',
     id: 6,
     title: 'What We Do in the Shadows',
     imageSrc: 'img/what-we-do-in-the-shadows.jpg',
@@ -143,6 +150,7 @@ export const filmsInfo: FilmInfoProps[] = [
     year: 2015,
     rating: 8.0,
     ratingCount: 3800,
+    totalTime: '1 h 36 m',
     description: {
       info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       director: 'Alejandro González Iñárritu',
@@ -161,6 +169,7 @@ export const filmsInfo: FilmInfoProps[] = [
     year: 2003,
     rating: 6.2,
     ratingCount: 2400,
+    totalTime: '1 h 36 m',
     description: {
       info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       director: 'Peter Howitt',
@@ -176,6 +185,7 @@ export const filmsInfo: FilmInfoProps[] = [
     video:
       'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
     genre: 'Horror',
+    totalTime: '1 h 36 m',
     year: 2010,
     rating: 8.2,
     ratingCount: 4100,
@@ -197,6 +207,7 @@ export const filmsInfo: FilmInfoProps[] = [
     year: 1994,
     rating: 8.9,
     ratingCount: 5000,
+    totalTime: '1 h 36 m',
     description: {
       info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       director: 'Quentin Tarantino',
@@ -215,6 +226,7 @@ export const filmsInfo: FilmInfoProps[] = [
     year: 2007,
     rating: 8.1,
     ratingCount: 4600,
+    totalTime: '1 h 36 m',
     description: {
       info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       director: 'Joel Coen, Ethan Coen',
@@ -233,6 +245,7 @@ export const filmsInfo: FilmInfoProps[] = [
     year: 2000,
     rating: 8.3,
     ratingCount: 3900,
+    totalTime: '1 h 36 m',
     description: {
       info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       director: 'Guy Ritchie',
@@ -250,6 +263,7 @@ export const filmsInfo: FilmInfoProps[] = [
     genre: 'Comedy',
     year: 2012,
     rating: 7.8,
+    totalTime: '1 h 36 m',
     ratingCount: 3200,
     description: {
       info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
@@ -269,6 +283,7 @@ export const filmsInfo: FilmInfoProps[] = [
     year: 1997,
     rating: 7.0,
     ratingCount: 2900,
+    totalTime: '1 h 36 m',
     description: {
       info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       director: 'Jean-Jacques Annaud',
@@ -287,6 +302,7 @@ export const filmsInfo: FilmInfoProps[] = [
     year: 2016,
     rating: 6.6,
     ratingCount: 2800,
+    totalTime: '1 h 36 m',
     description: {
       info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       director: 'Jeff Nichols',
@@ -304,6 +320,7 @@ export const filmsInfo: FilmInfoProps[] = [
     genre: 'Sci-Fi',
     year: 2005,
     rating: 6.5,
+    totalTime: '1 h 36 m',
     ratingCount: 2700,
     description: {
       info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
@@ -316,6 +333,7 @@ export const filmsInfo: FilmInfoProps[] = [
     title: 'Dardjeeling Limited',
     imageSrc: 'img/dardjeeling-limited.jpg',
     alt: 'Dardjeeling Limited',
+    totalTime: '1 h 36 m',
     video:
       'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
     bgSrc: 'img/bg-the-grand-budapest-hotel.jpg',
@@ -335,6 +353,7 @@ export const filmsInfo: FilmInfoProps[] = [
     imageSrc: 'img/orlando.jpg',
     alt: 'Orlando',
     bgSrc: 'img/bg-the-grand-budapest-hotel.jpg',
+    totalTime: '1 h 36 m',
     video:
       'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
     genre: 'Drama',
@@ -353,6 +372,7 @@ export const filmsInfo: FilmInfoProps[] = [
     imageSrc: 'img/mindhunter.jpg',
     alt: 'Mindhunter',
     bgSrc: 'img/bg-the-grand-budapest-hotel.jpg',
+    totalTime: '1 h 36 m',
     video:
       'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
     genre: 'Crime',
@@ -368,6 +388,7 @@ export const filmsInfo: FilmInfoProps[] = [
   {
     id: 20,
     title: 'Midnight Special',
+    totalTime: '1 h 36 m',
     imageSrc: 'img/midnight-special.jpg',
     alt: 'Midnight Special',
     bgSrc: 'img/bg-the-grand-budapest-hotel.jpg',
@@ -392,6 +413,7 @@ export const filmsInfo: FilmInfoProps[] = [
     video:
       'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
     genre: 'Drama',
+    totalTime: '1 h 36 m',
     year: 2014,
     rating: 8.9,
     ratingCount: 240,
