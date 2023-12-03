@@ -1,15 +1,14 @@
 import React from 'react';
-import { filmsInfo } from '../../../../mocs/films';
 import { SmallFilmCard } from './small-film-card';
-import { useAppSelector } from '../../../../hooks/store';
+import { useAppSelector } from '../../../../hooks/store.ts';
 
 interface FilmsListComponentProps {
-  maxLength?: number;
+  maxLength: number;
   genre?: string;
 }
 
 const FilmsListComponent: React.FC<FilmsListComponentProps> = ({
-  maxLength = filmsInfo.length,
+  maxLength ,
   genre,
 }) => {
   const stateGenreFilms = useAppSelector((state) => state.genreFilms);
