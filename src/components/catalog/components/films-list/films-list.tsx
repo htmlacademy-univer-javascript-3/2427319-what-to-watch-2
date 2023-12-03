@@ -1,21 +1,28 @@
 import React from 'react';
 import { filmsInfo } from '../../../../mocs/films';
 import { SmallFilmCard } from './small-film-card';
+import { useAppSelector } from '../../../../hooks/store';
 
 interface FilmsListComponentProps {
-  length?: number;
+  maxLength?: number;
   genre?: string;
 }
 
 const FilmsListComponent: React.FC<FilmsListComponentProps> = ({
-  length = filmsInfo.length,
-  genre
+  maxLength = filmsInfo.length,
+  genre,
 }) => {
-  const filteredFilms = genre ? filmsInfo.filter((film) => film.genre === genre) : filmsInfo;
+  const stateGenreFilms = useAppSelector((state) => state.genreFilms);
+  const stateFilms = useAppSelector((state) => state.films);
+
+
+  const filteredFilms = genre
+    ? stateFilms.filter((film) => film.genre === genre)
+    : stateGenreFilms;
 
   return (
     <div className="catalog__films-list">
-      {filteredFilms.slice(0, length).map((film) => (
+      {filteredFilms.slice(0, maxLength).map((film) => (
         <SmallFilmCard
           film={film}
           key={film.id}

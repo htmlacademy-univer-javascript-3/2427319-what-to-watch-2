@@ -13,7 +13,7 @@ interface FilmDescription {
 }
 
 export interface FilmInfoProps extends FilmProps {
-  genre?: string;
+  genre: string;
   year?: number;
   rating?: number;
   ratingCount?: number;
