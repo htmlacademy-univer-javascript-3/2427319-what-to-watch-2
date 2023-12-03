@@ -1,5 +1,5 @@
 import React from 'react';
-import { GENRE_LIST } from '../../../../data/genreList';
+import { GENRE_LIST } from '../../../../data/genre-list.ts';
 import { Genre } from './genre';
 
 const GenreListComponent: React.FC = () => (
