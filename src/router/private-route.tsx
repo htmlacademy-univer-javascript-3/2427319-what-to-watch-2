@@ -1,9 +1,9 @@
 import { Navigate } from 'react-router-dom';
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { RouteLinks } from './consts';
 
 interface PrivateRouteProps {
-  children: JSX.Element;
+  children: React.ReactElement;
   hasAccess?: boolean;
 }
 
