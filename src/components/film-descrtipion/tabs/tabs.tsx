@@ -9,14 +9,16 @@ const TABS = [
 
 interface TabsProps {
   active: string;
-  onClick: (tab: string) => void;
+  onClick?: (tab: string) => void;
 }
 
 const TabsComponent: FC<TabsProps> = ({ active, onClick}) => {
   const handleTabClick = useCallback(
     (event: React.MouseEvent<HTMLLIElement>) => {
       const { innerText } = event.currentTarget;
-      onClick(innerText);
+      if (onClick) {
+        onClick(innerText);
+      }
     },
     [onClick]
   );
@@ -32,7 +34,7 @@ const TabsComponent: FC<TabsProps> = ({ active, onClick}) => {
             }`}
             onClick={handleTabClick}
           >
-            <Link to="#" className="film-nav__link">
+            <Link to="" className="film-nav__link">
               {tab.label}
             </Link>
           </li>

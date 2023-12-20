@@ -145,6 +145,6 @@ export const addReview = createAsyncThunk<
     state: State;
     extra: AxiosInstance;
   }
->('/comments/id', async ({ comment, rating, filmId }, { extra: api }) => {
-  await api.post(`/comments/${filmId}`, { comment, rating });
+>('/comments/id', ({ comment, rating, filmId }, { extra: api }) => {
+  api.post(`/comments/${filmId}`, { comment, rating });
 });

@@ -1,11 +1,11 @@
 import { FC } from 'react';
 
 interface SpinnerProps {
-  fullDisplay?: boolean;
+  view?: 'display'| 'container';
 }
 
-export const Spinner: FC<SpinnerProps> = ({ fullDisplay = false }) => (
-  <div className={fullDisplay ? 'spinner-display' : 'spinner-container'}>
+export const Spinner: FC<SpinnerProps> = ({ view = 'container' }) => (
+  <div data-testid="spinner" className={`spinner-${view}`}>
     <div className="spinner" />
   </div>
 );

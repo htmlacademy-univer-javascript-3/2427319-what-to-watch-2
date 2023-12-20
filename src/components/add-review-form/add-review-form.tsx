@@ -36,7 +36,7 @@ const AddReviewComponent: React.FC<AddReviewFormProps> = ({ filmId }) => {
       event.preventDefault();
 
       dispatch(
-        addReview({ filmId: filmId, rating: +rating, comment: reviewText })
+        addReview({ filmId: filmId, rating: Number(rating), comment: reviewText })
       ).then(() => {
         navigate(`/films/${filmId}`);
       });
