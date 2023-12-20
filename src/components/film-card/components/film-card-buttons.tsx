@@ -28,7 +28,7 @@ const ButtonsContainerComponent: React.FC<FilmCardButtonsProps> = ({
   const authorizationStatus = useAppSelector(
     (state) => state[ReducerName.Authorzation].authorizationStatus
   );
-  const notAuth = authorizationStatus === AuthorizationStatus.NOT_AUTHORIZED;
+  const notAuth = authorizationStatus === AuthorizationStatus.Unauthorized;
 
   const handleSetFavorite = (event: FormEvent<HTMLButtonElement>) => {
     event.preventDefault();

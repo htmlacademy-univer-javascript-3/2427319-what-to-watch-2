@@ -156,6 +156,7 @@ const PlayerPage: React.FC = () => {
         src={film.videoLink}
         className="player__video"
         poster={film.backgroundImage}
+        data-testid="video-player"
       />
 
       <button type="button" className="player__exit" onClick={exitPlayer}>
@@ -188,7 +189,9 @@ const PlayerPage: React.FC = () => {
         </div>
 
         <div className="player__controls-row">
-          <button type="button" className="player__play" onClick={togglePlay}>
+          <button type="button" data-testid="play-button"
+            className="player__play" onClick={togglePlay}
+          >
             {isPlaying ? (
               <svg viewBox="0 0 19 19" width="19" height="19">
                 <use xlinkHref="#pause"></use>

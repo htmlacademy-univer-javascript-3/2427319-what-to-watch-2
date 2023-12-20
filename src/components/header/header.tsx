@@ -6,11 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/store';
 import { ReducerName } from '../../types/reducer-name';
 import { AuthorizationStatus } from '../../types/authorization-status';
 import { logout } from '../../store/api-actions';
-
-const enum ImgStyles {
-  WIDTH = 63,
-  HEIGHT = 63,
-}
+import { HeaderImageStyles } from '../../types/image';
 
 interface HeaderProps {
   children?: React.ReactNode;
@@ -29,7 +25,7 @@ const HeaderComponent: React.FC<HeaderProps> = ({
   );
   const user = useAppSelector((state) => state[ReducerName.Authorzation].user);
 
-  const hasAccess = authorizationStatus === AuthorizationStatus.AUTHORIZED;
+  const hasAccess = authorizationStatus === AuthorizationStatus.Authorized;
 
   const dispatch = useAppDispatch();
 
@@ -71,8 +67,8 @@ const HeaderComponent: React.FC<HeaderProps> = ({
                   <img
                     src={user?.avatarUrl}
                     alt={user?.name}
-                    width={ImgStyles.WIDTH}
-                    height={ImgStyles.HEIGHT}
+                    width={HeaderImageStyles.Widht}
+                    height={HeaderImageStyles.Height}
                   />
                 </div>
               </Link>

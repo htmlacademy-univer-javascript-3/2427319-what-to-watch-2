@@ -16,7 +16,7 @@ const ButtonComponent: React.FC<ButtonProps> = ({
   type = 'button',
   onClick,
 }) => (
-  <button className={className} onClick={onClick} type={type}>
+  <button data-testid="show-more" className={className} onClick={onClick} type={type}>
     {withChildren ? children : label}
   </button>
 );

@@ -29,6 +29,7 @@ const SmallFilmCardComponent: React.FC<SmallFilmCardProps> = ({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={onMouseLeave}
       data-active={isActive}
+      data-testid="sample-film-title"
     >
       <div className="small-film-card__image">
         {isActive ? (

@@ -57,6 +57,7 @@ const AddReviewComponent: React.FC<AddReviewFormProps> = ({ filmId }) => {
                   className="rating__input"
                   id={`star-${value}`}
                   type="radio"
+                  data-testid={`rating-${value}`}
                   name="rating"
                   value={value.toString()}
                   checked={rating === value.toString()}
@@ -73,6 +74,7 @@ const AddReviewComponent: React.FC<AddReviewFormProps> = ({ filmId }) => {
         <div className="add-review__text">
           <textarea
             className="add-review__textarea"
+            data-testid="review-text"
             name="review-text"
             id="review-text"
             placeholder="Review text"

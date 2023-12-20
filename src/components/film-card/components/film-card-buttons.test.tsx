@@ -24,7 +24,7 @@ describe('FilmCardButtons Component', () => {
       favoriteCount: 10,
     },
     [ReducerName.Authorzation]: {
-      authorizationStatus: AuthorizationStatus.AUTHORIZED,
+      authorizationStatus: AuthorizationStatus.Authorized,
     },
   });
 
