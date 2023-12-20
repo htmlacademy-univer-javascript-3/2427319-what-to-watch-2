@@ -7,12 +7,12 @@ import { Film } from '../../../../types/film';
 
 interface FilmsListComponentProps {
   maxLength?: number;
-  similar?: Film[];
+  films?: Film[];
 }
 
 const FilmsListComponent: React.FC<FilmsListComponentProps> = ({
   maxLength,
-  similar,
+  films,
 }) => {
   const stateGenreFilms = useAppSelector(
     (state) => state[ReducerName.Main].genreFilms
@@ -31,7 +31,7 @@ const FilmsListComponent: React.FC<FilmsListComponentProps> = ({
     setActiveFilm(null);
   }, []);
 
-  const filteredFilms = similar || stateGenreFilms;
+  const filteredFilms = films || stateGenreFilms;
 
   return (
     <div className="catalog__films-list">

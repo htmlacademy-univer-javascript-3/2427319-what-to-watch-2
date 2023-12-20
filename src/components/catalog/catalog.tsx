@@ -4,6 +4,7 @@ import { FilmsList } from './components/films-list';
 import { Button } from '../button';
 import { useAppSelector } from '../../hooks/store';
 import { ReducerName } from '../../types/reducer-name';
+import { Film } from '../../types/film';
 
 const DEFAULT_LIST_LENGTH = 8;
 
@@ -11,12 +12,14 @@ interface CatalogProps {
   withoutGenre?: boolean;
   withoutButton?: boolean;
   listLength?: number;
+  films?: Film[];
 }
 
 const CatalogComponent: React.FC<CatalogProps> = ({
   withoutGenre = false,
   withoutButton = false,
   listLength,
+  films,
 }) => {
   const stateGenreFilms = useAppSelector((state) => state[ReducerName.Main].genreFilms);
   const [maxLength, setMaxLength] = useState(listLength || DEFAULT_LIST_LENGTH);
@@ -33,7 +36,7 @@ const CatalogComponent: React.FC<CatalogProps> = ({
 
       {!withoutGenre ? <GenreList /> : null}
 
-      <FilmsList maxLength={maxLength} />
+      <FilmsList maxLength={maxLength} films={films} />
 
       {showButton ? (
         <div className="catalog__more">

@@ -14,7 +14,7 @@ const enum PosterSize {
 }
 
 const FilmCardComponent: React.FC<FilmCardProps> = ({ film }) => {
-  const { backgroundImage, name, genre, released, id, posterImage } = film;
+  const { backgroundImage, name, genre, released, id, posterImage, isFavorite } = film;
 
   return (
     <section className="film-card">
@@ -35,7 +35,7 @@ const FilmCardComponent: React.FC<FilmCardProps> = ({ film }) => {
               <span className="film-card__year">{released}</span>
             </p>
 
-            <FilmCardButtons filmId={id} />
+            <FilmCardButtons filmId={id} isFavorite={isFavorite} />
           </div>
         </div>
       </div>
