@@ -41,6 +41,9 @@ export const mainReducer = createSlice({
       .addCase(fetchFilms.pending, (state) => {
         state.isFilmsLoading = true;
       })
+      .addCase(fetchFilms.rejected, (state) => {
+        state.isFilmsLoading = false;
+      })
       .addCase(fetchFilms.fulfilled, (state, action) => {
         state.films = action.payload;
         state.genreFilms = state.films;

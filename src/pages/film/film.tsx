@@ -39,7 +39,7 @@ const FilmPage: React.FC = () => {
   }, [id, dispatch]);
 
   if (isLoading) {
-    return <Spinner fullDisplay />;
+    return <Spinner view='display' />;
   }
 
   if (!id) {

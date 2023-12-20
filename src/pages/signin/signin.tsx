@@ -17,6 +17,8 @@ import { Header } from '../../components/header';
 import { Footer } from '../../components/footer';
 import { errorHandle } from '../../services/error-handle';
 
+const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
 interface FormFieldProps {
   type: string;
   name: string;
@@ -69,7 +71,6 @@ const SignInPage: React.FC = () => {
     (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault();
 
-      const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
       if (!emailPattern.test(email)) {
         return errorHandle('Please enter a valid email address');
       }

@@ -142,7 +142,7 @@ const PlayerPage: React.FC = () => {
   );
 
   if (isLoading) {
-    return <Spinner fullDisplay />;
+    return <Spinner view='display' />;
   }
 
   if (!film || !id) {
