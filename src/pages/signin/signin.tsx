@@ -2,7 +2,9 @@ import React, {
   ChangeEvent,
   FormEvent,
   forwardRef,
+  memo,
   useCallback,
+  useMemo,
   useRef,
   useState,
 } from 'react';
@@ -25,7 +27,7 @@ interface FormFieldProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const FormField = forwardRef<HTMLInputElement, FormFieldProps>(
+const FormFieldComponent = forwardRef<HTMLInputElement, FormFieldProps>(
   ({ type, name, id, placeholder, label, value = '', onChange }, ref) => (
     <div className="sign-in__field">
       <input
@@ -46,7 +48,9 @@ const FormField = forwardRef<HTMLInputElement, FormFieldProps>(
   )
 );
 
-FormField.displayName = 'FormField';
+FormFieldComponent.displayName = 'FormField';
+
+const FormField = memo(FormFieldComponent);
 
 const SignInPage: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -87,6 +91,8 @@ const SignInPage: React.FC = () => {
     setPassword(event.target.value);
   }, []);
 
+  const pageTitle = useMemo(() => <h1 className="page-title user-page__title">Sign in</h1>, []);
+
   if (authStatus === AuthorizationStatus.AUTHORIZED) {
     return <Navigate to="/" />;
   }
@@ -94,7 +100,7 @@ const SignInPage: React.FC = () => {
   return (
     <div className="user-page">
       <Header className="user-page__head" isLoginPage>
-        <h1 className="page-title user-page__title">Sign in</h1>
+        {pageTitle}
       </Header>
 
       <div className="sign-in user-page__content">
@@ -139,4 +145,4 @@ const SignInPage: React.FC = () => {
   );
 };
 
-export const SignIn = React.memo(SignInPage);
+export const SignIn = memo(SignInPage);
