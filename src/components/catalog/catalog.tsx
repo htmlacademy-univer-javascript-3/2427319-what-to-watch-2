@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { GenreList } from './components/genre-list';
 import { FilmsList } from './components/films-list';
-import { ShowMoreButton } from '../buttons/show-more-button.tsx';
+import { Button } from '../button';
 import { useAppSelector } from '../../hooks/store';
 
 const DEFAULT_LIST_LENGTH = 8;
@@ -35,7 +35,7 @@ const CatalogComponent: React.FC<CatalogProps> = ({
 
       {showButton ? (
         <div className="catalog__more">
-          <ShowMoreButton label="Show more" className="catalog__button" type="button" onClick={handleClick}/>
+          <Button label="Show more" className="catalog__button" type="button" onClick={handleClick}/>
         </div>
       ) : null}
     </section>

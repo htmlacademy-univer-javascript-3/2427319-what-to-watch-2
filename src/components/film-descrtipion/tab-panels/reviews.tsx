@@ -1,5 +1,5 @@
 import { FC, memo } from 'react';
-import { Review, reviewsData } from '../../../data/review-data.ts';
+import { Review, reviewsData } from '../../../data/reviewsData';
 
 const ReviewComponent: FC<Review> = ({ text, author, date, rating }) => (
   <div className="review">
