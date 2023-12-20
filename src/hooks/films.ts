@@ -1,25 +1,17 @@
-import { useMemo } from 'react';
-import { FilmInfoProps, filmsInfo } from '../mocs/films';
-
 const SECONDS_IN_HOUR = 3600;
 const SECONDS_IN_MINUTE = 60;
 
-const findFilmById = (films: FilmInfoProps[], id: string) =>
-  films.find((film) => film.id === Number(id));
-
-export const useFilmById = (id = '') => useMemo(() => findFilmById(filmsInfo, id), [id]);
-
 export const useFilmRating = (rating = 0) => {
-  if (rating >= 9) {
-    return 'Excellent';
+  if (rating >= 10) {
+    return 'Awesome';
   } else if (rating >= 8) {
     return 'Very good';
-  } else if (rating >= 7) {
+  } else if (rating >= 5) {
     return 'Good';
-  } else if (rating >= 6) {
-    return 'Average';
+  } else if (rating >= 3) {
+    return 'Normal';
   }
-  return 'Below average';
+  return 'Bad';
 };
 
 export const formatTime = (timeInSeconds: number) => {

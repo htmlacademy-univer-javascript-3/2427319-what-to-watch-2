@@ -9,7 +9,7 @@ const enum ImgStyles {
 }
 
 interface HeaderProps {
-  children?: React.ReactElement;
+  children?: React.ReactNode;
   className?: string;
 }
 

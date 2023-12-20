@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { RouteLinks } from './consts';
 
 interface PrivateRouteProps {
@@ -7,6 +7,6 @@ interface PrivateRouteProps {
   hasAccess?: boolean;
 }
 
-const PrivateRoute: FC<PrivateRouteProps> = ({ children, hasAccess = true }) => hasAccess ? children : <Navigate to={RouteLinks.LOGIN} />;
+const PrivateRoute: FC<PrivateRouteProps> = ({ children, hasAccess = false }) => hasAccess ? children : <Navigate to={RouteLinks.LOGIN} />;
 
 export default PrivateRoute;

@@ -1,7 +1,7 @@
 import React, { FormEvent, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { useAppDispatch } from '../../../../hooks/store';
-import { setGenre } from '../../../../store/actions';
+import { setGenre } from '../../../../store/action';
 
 interface GenreProps {
   genre: string;
@@ -24,7 +24,7 @@ const GenreComponent: React.FC<GenreProps> = ({ genre, isActive }) => {
         isActive ? '--active' : ''
       }`}
     >
-      <Link to="/" className="catalog__genres-link" onClick={handleClick}>
+      <Link to="#" className="catalog__genres-link" onClick={handleClick}>
         {genre}
       </Link>
     </li>

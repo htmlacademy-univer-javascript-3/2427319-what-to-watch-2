@@ -1,16 +1,30 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { Header } from '../../components/header';
-import { useFilmById } from '../../hooks/films';
 import { RouteLinks } from '../../router/consts';
 import { Poster } from '../../components/poster';
 import { AddReviewForm } from '../../components/add-review-form';
+import { useAppDispatch, useAppSelector } from '../../hooks/store';
+import { Spinner } from '../../components/spinner/spinner';
+import { fetchFilm } from '../../store/api-action';
 
 const AddReviewPage: React.FC = () => {
   const { id } = useParams();
-  const film = useFilmById(id);
+  const dispatch = useAppDispatch();
+  const film = useAppSelector((state) => state.film);
+  const isLoading = useAppSelector((state) => state.isFilmLoading);
 
-  if (!film) {
+  useLayoutEffect(() => {
+    if (id) {
+      dispatch(fetchFilm(id));
+    }
+  }, [id, dispatch]);
+
+  if (isLoading || !film) {
+    return <Spinner fullDisplay />;
+  }
+
+  if ((!film && !isLoading) || !id) {
     return <Navigate to={RouteLinks.NOT_FOUND} />;
   }
 
@@ -18,14 +32,14 @@ const AddReviewPage: React.FC = () => {
     <section className="film-card film-card--full">
       <div className="film-card__header">
         <div className="film-card__bg">
-          <img src={film.bgSrc} alt={film.imageSrc} />
+          <img src={film.backgroundColor} alt={film.name} />
         </div>
         <Header>
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
                 <Link to={`/films/${film.id}`} className="breadcrumbs__link">
-                  {film.title}
+                  {film.name}
                 </Link>
               </li>
               <li className="breadcrumbs__item">
@@ -38,8 +52,8 @@ const AddReviewPage: React.FC = () => {
         </Header>
 
         <Poster
-          src={film.imageSrc}
-          alt={film.alt}
+          src={film.posterImage}
+          alt={film.name}
           className="film-card__poster--small"
         />
       </div>

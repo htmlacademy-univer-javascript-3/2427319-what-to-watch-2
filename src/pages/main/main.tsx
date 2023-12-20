@@ -1,22 +1,26 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import { FilmCard } from '../../components/film-card';
 import { Catalog } from '../../components/catalog';
 import { Footer } from '../../components/footer';
+import { useAppDispatch, useAppSelector } from '../../hooks/store';
+import { fetchPromo } from '../../store/api-action';
+import { Spinner } from '../../components/spinner/spinner';
 
 const MainPage: React.FC = () => {
-  const film = {
-    img: {
-      src: 'img/the-grand-budapest-hotel-poster.jpg',
-      alt: 'The Grand Budapest Hotel',
-      bgSrc: 'img/bg-the-grand-budapest-hotel.jpg',
-    },
-    title: 'The Grand Budapest Hotel',
-    genre: 'Drama',
-    year: 2014,
-  };
+  const dispatch = useAppDispatch();
+  const promo = useAppSelector((state) => state.promo);
+
+  useLayoutEffect(() => {
+    dispatch(fetchPromo());
+  }, [dispatch]);
+
+  if(!promo) {
+    return <Spinner />;
+  }
+
   return (
     <>
-      <FilmCard film={film} />
+      <FilmCard film={promo} />
       <div className="page-content">
         <Catalog />
         <Footer />

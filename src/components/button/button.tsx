@@ -21,4 +21,4 @@ const ButtonComponent: React.FC<ButtonProps> = ({
   </button>
 );
 
-export const ShowMoreButton = memo(ButtonComponent);
+export const Button = memo(ButtonComponent);
