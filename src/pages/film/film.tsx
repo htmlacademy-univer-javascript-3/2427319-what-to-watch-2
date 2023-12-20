@@ -8,16 +8,17 @@ import { RouteLinks } from '../../router/consts';
 import { Poster } from '../../components/poster';
 import { FilmDescription } from '../../components/film-descrtipion/film-description';
 import { useAppDispatch, useAppSelector } from '../../hooks/store';
-import { fetchFilm } from '../../store/api-action';
 import { Spinner } from '../../components/spinner/spinner';
+import { ReducerName } from '../../types/reducer-name';
+import { fetchFilm } from '../../store/api-actions';
 
 const FEW_FILM_LIST = 4;
 
 const FilmPage: React.FC = () => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
-  const film = useAppSelector((state) => state.film);
-  const isLoading = useAppSelector((state) => state.isFilmLoading);
+  const film = useAppSelector((state) => state[ReducerName.Film].film);
+  const isLoading = useAppSelector((state) => state[ReducerName.Film].isLoading);
 
   useLayoutEffect(() => {
     if (id) {

@@ -6,13 +6,14 @@ import { Poster } from '../../components/poster';
 import { AddReviewForm } from '../../components/add-review-form';
 import { useAppDispatch, useAppSelector } from '../../hooks/store';
 import { Spinner } from '../../components/spinner/spinner';
-import { fetchFilm } from '../../store/api-action';
+import { ReducerName } from '../../types/reducer-name';
+import { fetchFilm } from '../../store/api-actions';
 
 const AddReviewPage: React.FC = () => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
-  const film = useAppSelector((state) => state.film);
-  const isLoading = useAppSelector((state) => state.isFilmLoading);
+  const film = useAppSelector((state) => state[ReducerName.Film].film);
+  const isLoading = useAppSelector((state) => state[ReducerName.Film].isLoading);
 
   useLayoutEffect(() => {
     if (id) {

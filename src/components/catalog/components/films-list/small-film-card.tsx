@@ -2,10 +2,10 @@ import React, { useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { RouteLinks } from '../../../../router/consts';
 import { VideoPlayer } from '../../../videoplayer';
-import { FilmList } from '../../../../types/film';
+import { Film } from '../../../../types/film';
 
 interface SmallFilmCardProps {
-  film: FilmList;
+  film: Film;
   isActive?: boolean;
   onMouseEnter: (id: string) => void;
   onMouseLeave: () => void;

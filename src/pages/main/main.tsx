@@ -3,12 +3,13 @@ import { FilmCard } from '../../components/film-card';
 import { Catalog } from '../../components/catalog';
 import { Footer } from '../../components/footer';
 import { useAppDispatch, useAppSelector } from '../../hooks/store';
-import { fetchPromo } from '../../store/api-action';
 import { Spinner } from '../../components/spinner/spinner';
+import { ReducerName } from '../../types/reducer-name';
+import { fetchPromo } from '../../store/api-actions';
 
 const MainPage: React.FC = () => {
   const dispatch = useAppDispatch();
-  const promo = useAppSelector((state) => state.promo);
+  const promo = useAppSelector((state) => state[ReducerName.Main].promo);
 
   useLayoutEffect(() => {
     dispatch(fetchPromo());
