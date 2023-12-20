@@ -1,4 +1,4 @@
-import { FC, memo, useEffect, useMemo, useState } from 'react';
+import { FC, memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { Tabs } from './tabs';
 import { Overview } from './tab-panels/overview';
 import { Details as FilmDetails } from './tab-panels/details';
@@ -9,26 +9,27 @@ interface FilmDescriptionProps {
   film: Film;
 }
 
-const enum TabsDTO {
-  OVERVIEW = 'Overview',
-  Details = 'Details',
-  Reviews = 'Reviews',
-}
+const TAB_TYPES = ['Overview', 'Details', 'Reviews'] as const;
+
+export type TTabs = typeof TAB_TYPES[number];
 
 const FilmDescriptionComponent: FC<FilmDescriptionProps> = ({ film }) => {
-  const [activeTab, setActiveTab] = useState(TabsDTO.OVERVIEW);
+  const [activeTab, setActiveTab] = useState<string>(TAB_TYPES[0]);
 
-  const handleTabClick = (tab: string) => {
-    setActiveTab(tab as TabsDTO);
-  };
+  const handleTabClick = useCallback((tab: string) => {
+    const foundTab = TAB_TYPES.find((currentTab) => tab === currentTab);
+    if (foundTab) {
+      setActiveTab(tab);
+    }
+  }, []);
 
   const panel = useMemo(() => {
     switch (activeTab) {
-      case TabsDTO.OVERVIEW:
+      case TAB_TYPES[0]:
         return <Overview film={film} />;
-      case TabsDTO.Details:
+      case TAB_TYPES[1]:
         return <FilmDetails film={film} />;
-      case TabsDTO.Reviews:
+      case TAB_TYPES[2]:
         return <FilmReviews />;
       default:
         return null;
@@ -36,7 +37,7 @@ const FilmDescriptionComponent: FC<FilmDescriptionProps> = ({ film }) => {
   }, [activeTab, film]);
 
   useEffect(() => {
-    setActiveTab(TabsDTO.OVERVIEW);
+    setActiveTab(TAB_TYPES[0]);
   }, [film.id]);
 
   return (

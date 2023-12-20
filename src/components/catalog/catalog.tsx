@@ -26,6 +26,7 @@ const CatalogComponent: React.FC<CatalogProps> = ({
   },[]);
 
   const showButton = !withoutButton && stateGenreFilms.length >= maxLength;
+
   return (
     <section className="catalog">
       <h2 className="catalog__title visually-hidden">Catalog</h2>
