@@ -1,7 +1,7 @@
 import React, { FormEvent, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { useAppDispatch } from '../../../../hooks/store';
-import { setGenre } from '../../../../store/action';
+import { setGenre } from '../../../../store/actions';
 
 interface GenreProps {
   genre: string;
@@ -13,7 +13,7 @@ const GenreComponent: React.FC<GenreProps> = ({ genre, isActive }) => {
   const handleClick = useCallback(
     (event: FormEvent<HTMLAnchorElement>) => {
       event.preventDefault();
-      dispatch(setGenre({ genre }));
+      dispatch(setGenre(genre));
     },
     [dispatch, genre]
   );

@@ -10,13 +10,14 @@ import { formatTime } from '../../hooks/films';
 import { RouteLinks } from '../../router/consts';
 import { Spinner } from '../../components/spinner/spinner';
 import { useAppDispatch, useAppSelector } from '../../hooks/store';
-import { fetchFilm } from '../../store/api-action';
+import { ReducerName } from '../../types/reducer-name';
+import { fetchFilm } from '../../store/api-actions';
 
 const PlayerPage: React.FC = () => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
-  const film = useAppSelector((state) => state.film);
-  const isLoading = useAppSelector((state) => state.isFilmLoading);
+  const film = useAppSelector((state) => state[ReducerName.Film].film);
+  const isLoading = useAppSelector((state) => state[ReducerName.Film].isLoading);
 
   if (id && id !== film?.id) {
     dispatch(fetchFilm(id));

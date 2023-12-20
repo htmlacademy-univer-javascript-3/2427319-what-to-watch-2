@@ -1,10 +1,11 @@
 import React, { useMemo } from 'react';
 import { Genre } from './genre';
 import { useAppSelector } from '../../../../hooks/store';
+import { ReducerName } from '../../../../types/reducer-name';
 
 const GenreListComponent: React.FC = () => {
-  const activeGenre = useAppSelector((state) => state.genre);
-  const stateFilms = useAppSelector((state) => state.films);
+  const activeGenre = useAppSelector((state) => state[ReducerName.Main].currentGenre);
+  const stateFilms = useAppSelector((state) => state[ReducerName.Main].films);
 
   const genreList = useMemo(() => ['All genres', ...new Set(stateFilms.map((film) => film.genre))], [stateFilms]);
 
