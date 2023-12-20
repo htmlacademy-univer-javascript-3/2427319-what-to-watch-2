@@ -8,12 +8,15 @@ import { useAppDispatch, useAppSelector } from '../../hooks/store';
 import { Spinner } from '../../components/spinner/spinner';
 import { ReducerName } from '../../types/reducer-name';
 import { fetchFilm } from '../../store/api-actions';
+import { Page404 } from '../page-404';
 
 const AddReviewPage: React.FC = () => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
   const film = useAppSelector((state) => state[ReducerName.Film].film);
-  const isLoading = useAppSelector((state) => state[ReducerName.Film].isLoading);
+  const isLoading = useAppSelector(
+    (state) => state[ReducerName.Film].isLoading
+  );
 
   useLayoutEffect(() => {
     if (id) {
@@ -21,19 +24,19 @@ const AddReviewPage: React.FC = () => {
     }
   }, [id, dispatch]);
 
-  if (isLoading || !film) {
+  if (isLoading) {
     return <Spinner fullDisplay />;
   }
 
-  if ((!film && !isLoading) || !id) {
+  if (!id) {
     return <Navigate to={RouteLinks.NOT_FOUND} />;
   }
 
-  return (
+  return film ? (
     <section className="film-card film-card--full">
       <div className="film-card__header">
         <div className="film-card__bg">
-          <img src={film.backgroundColor} alt={film.name} />
+          <img src={film.backgroundImage} alt={film.name} />
         </div>
         <Header>
           <nav className="breadcrumbs">
@@ -58,9 +61,10 @@ const AddReviewPage: React.FC = () => {
           className="film-card__poster--small"
         />
       </div>
-      {/* onSubmit заглушка */}
-      <AddReviewForm onSubmit={(a, b)=> (a + b)} />
+      <AddReviewForm filmId={film.id} />
     </section>
+  ) : (
+    <Page404 />
   );
 };
 export const AddReview = React.memo(AddReviewPage);
