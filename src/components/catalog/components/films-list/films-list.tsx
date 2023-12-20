@@ -3,19 +3,23 @@ import { SmallFilmCard } from './small-film-card';
 import { useAppSelector } from '../../../../hooks/store';
 import { Spinner } from '../../../spinner/spinner';
 import { ReducerName } from '../../../../types/reducer-name';
+import { Film } from '../../../../types/film';
 
 interface FilmsListComponentProps {
   maxLength?: number;
-  genre?: string;
+  similar?: Film[];
 }
 
 const FilmsListComponent: React.FC<FilmsListComponentProps> = ({
   maxLength,
-  genre,
+  similar,
 }) => {
-  const stateGenreFilms = useAppSelector((state) => state[ReducerName.Main].genreFilms);
-  const stateFilms = useAppSelector((state) => state[ReducerName.Main].films);
-  const isLoading = useAppSelector((state) => state[ReducerName.Main].isFilmsLoading);
+  const stateGenreFilms = useAppSelector(
+    (state) => state[ReducerName.Main].genreFilms
+  );
+  const isLoading = useAppSelector(
+    (state) => state[ReducerName.Main].isFilmsLoading
+  );
 
   const [activeFilm, setActiveFilm] = useState<string | null>(null);
 
@@ -27,9 +31,8 @@ const FilmsListComponent: React.FC<FilmsListComponentProps> = ({
     setActiveFilm(null);
   };
 
-  const filteredFilms = genre
-    ? stateFilms.filter((film) => film.genre === genre)
-    : stateGenreFilms;
+  const filteredFilms = similar || stateGenreFilms;
+
   return (
     <div className="catalog__films-list">
       {isLoading ? (

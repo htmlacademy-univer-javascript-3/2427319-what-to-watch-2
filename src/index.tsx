@@ -4,6 +4,7 @@ import App from './App';
 import { Provider } from 'react-redux';
 import { store } from './store';
 import { fetchFilms } from './store/api-actions';
+import './styles/main.css';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

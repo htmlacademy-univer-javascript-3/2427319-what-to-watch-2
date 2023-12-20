@@ -10,31 +10,43 @@ import { FilmDescription } from '../../components/film-descrtipion/film-descript
 import { useAppDispatch, useAppSelector } from '../../hooks/store';
 import { Spinner } from '../../components/spinner/spinner';
 import { ReducerName } from '../../types/reducer-name';
-import { fetchFilm } from '../../store/api-actions';
-
-const FEW_FILM_LIST = 4;
+import { fetchFilm, fetchReviews, fetchSimilar } from '../../store/api-actions';
+import { AuthorizationStatus } from '../../types/authorization-status';
+import { Page404 } from '../page-404';
 
 const FilmPage: React.FC = () => {
   const { id } = useParams();
+
+  const isAuth =
+    useAppSelector(
+      (state) => state[ReducerName.Authorzation].authorizationStatus
+    ) === AuthorizationStatus.AUTHORIZED;
+
   const dispatch = useAppDispatch();
   const film = useAppSelector((state) => state[ReducerName.Film].film);
-  const isLoading = useAppSelector((state) => state[ReducerName.Film].isLoading);
+  const isLoading = useAppSelector(
+    (state) => state[ReducerName.Film].isLoading
+  );
+
+  const similar = useAppSelector((state) => state[ReducerName.Film].similar);
 
   useLayoutEffect(() => {
     if (id) {
       dispatch(fetchFilm(id));
+      dispatch(fetchSimilar(id));
+      dispatch(fetchReviews(id));
     }
   }, [id, dispatch]);
 
-  if (isLoading || !film) {
+  if (isLoading) {
     return <Spinner fullDisplay />;
   }
 
-  if ((!film && !isLoading) || !id) {
+  if (!id) {
     return <Navigate to={RouteLinks.NOT_FOUND} />;
   }
 
-  return (
+  return film ? (
     <>
       <section
         className="film-card film-card--full"
@@ -55,7 +67,7 @@ const FilmPage: React.FC = () => {
                 <span className="film-card__year">{film.released}</span>
               </p>
 
-              <FilmCardButtons filmId={film.id} reviewButton />
+              <FilmCardButtons filmId={film.id} reviewButton={isAuth} />
             </div>
           </div>
         </div>
@@ -73,14 +85,18 @@ const FilmPage: React.FC = () => {
         </div>
       </section>
       <div className="page-content">
-        <section className="catalog catalog--like-this">
-          <h2 className="catalog__title">More like this</h2>
-          <FilmsList maxLength={FEW_FILM_LIST} genre={film.genre} />
-        </section>
+        {!!similar.length && (
+          <section className="catalog catalog--like-this">
+            <h2 className="catalog__title">More like this</h2>
+            <FilmsList similar={similar} />
+          </section>
+        )}
 
         <Footer />
       </div>
     </>
+  ) : (
+    <Page404 />
   );
 };
 export const Film = React.memo(FilmPage);
