@@ -4,29 +4,26 @@ import { Overview } from './tab-panels/overview';
 import { Details as FilmDetails } from './tab-panels/details';
 import { Reviews as FilmReviews } from './tab-panels/reviews';
 import { Film } from '../../types/film';
-import { TabTypes } from '../../types/tabs';
+import { TTabs, TabTypes } from '../../types/tabs';
 
 interface FilmDescriptionProps {
   film: Film;
 }
 
 const FilmDescriptionComponent: FC<FilmDescriptionProps> = ({ film }) => {
-  const [activeTab, setActiveTab] = useState<string>(TabTypes[0]);
+  const [activeTab, setActiveTab] = useState<TTabs>(TabTypes.Overview);
 
-  const handleTabClick = useCallback((tab: string) => {
-    const foundTab = TabTypes.find((currentTab) => tab === currentTab);
-    if (foundTab) {
-      setActiveTab(tab);
-    }
+  const handleTabClick = useCallback((tab: TTabs) => {
+    setActiveTab(tab);
   }, []);
 
   const panel = useMemo(() => {
     switch (activeTab) {
-      case TabTypes[0]:
+      case TabTypes.Overview:
         return <Overview film={film} />;
-      case TabTypes[1]:
+      case TabTypes.Details:
         return <FilmDetails film={film} />;
-      case TabTypes[2]:
+      case TabTypes.Reviews:
         return <FilmReviews />;
       default:
         return null;
@@ -37,7 +34,7 @@ const FilmDescriptionComponent: FC<FilmDescriptionProps> = ({ film }) => {
     let isMounted = true;
 
     if (isMounted) {
-      setActiveTab(TabTypes[0]);
+      setActiveTab(TabTypes.Overview);
     }
 
     return () => {

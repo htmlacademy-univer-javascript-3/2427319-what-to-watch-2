@@ -27,7 +27,9 @@ describe('FilmDescription Component', () => {
       </Provider>
     );
 
-    for (const tab of TabTypes) {
+    const tabs = Object.values(TabTypes);
+
+    for (const tab of tabs) {
       expect(screen.getByText(tab)).toBeInTheDocument();
     }
   });

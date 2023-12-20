@@ -1,41 +1,36 @@
 import { FC, memo, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-
-const TABS = [
-  { label: 'Overview'},
-  { label: 'Details'},
-  { label: 'Reviews'},
-];
-
+import { TTabs, TabTypes } from '../../../types/tabs';
 interface TabsProps {
-  active: string;
-  onClick?: (tab: string) => void;
+  active: TTabs;
+  onClick?: (tab: TTabs) => void;
 }
 
-const TabsComponent: FC<TabsProps> = ({ active, onClick}) => {
+const TabsComponent: FC<TabsProps> = ({ active, onClick }) => {
   const handleTabClick = useCallback(
-    (event: React.MouseEvent<HTMLLIElement>) => {
-      const { innerText } = event.currentTarget;
+    (tab: TTabs) => {
       if (onClick) {
-        onClick(innerText);
+        onClick(tab);
       }
     },
     [onClick]
   );
 
+  const tabs = Object.values(TabTypes);
+
   return (
     <nav className="film-nav film-card__nav">
       <ul className="film-nav__list">
-        {TABS.map((tab) => (
+        {tabs.map((tab) => (
           <li
-            key={tab.label}
+            key={tab}
             className={`film-nav__item ${
-              tab.label === active ? 'film-nav__item--active' : ''
+              tab === active ? 'film-nav__item--active' : ''
             }`}
-            onClick={handleTabClick}
+            onClick={() => handleTabClick(tab)}
           >
             <Link to="" className="film-nav__link">
-              {tab.label}
+              {tab}
             </Link>
           </li>
         ))}

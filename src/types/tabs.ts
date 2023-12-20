@@ -1,3 +1,7 @@
-export const TabTypes = ['Overview', 'Details', 'Reviews'] as const;
+export const TabTypes = {
+  Overview : 'Overview',
+  Details : 'Details',
+  Reviews : 'Reviews',
+} as const;
 
-export type TTabs = typeof TabTypes[number];
+export type TTabs = keyof typeof TabTypes;
