@@ -13,7 +13,7 @@ const GenreComponent: React.FC<GenreProps> = ({ genre, isActive }) => {
   const handleClick = useCallback(
     (event: FormEvent<HTMLAnchorElement>) => {
       event.preventDefault();
-      dispatch(setGenre({ genre }));
+      dispatch(setGenre(genre));
     },
     [dispatch, genre]
   );
@@ -24,7 +24,7 @@ const GenreComponent: React.FC<GenreProps> = ({ genre, isActive }) => {
         isActive ? '--active' : ''
       }`}
     >
-      <Link to="/" className="catalog__genres-link" onClick={handleClick}>
+      <Link to="#" className="catalog__genres-link" onClick={handleClick}>
         {genre}
       </Link>
     </li>

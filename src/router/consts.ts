@@ -5,6 +5,6 @@ export const enum RouteLinks {
     PLAYER = '/player/:id',
     FILMS = '/films',
     FILM = '/films/:id',
-    REVIEW = '/films/:id/review',
+    REVIEW = 'review',
     NOT_FOUND = '*',
   }

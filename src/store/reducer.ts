@@ -1,26 +1,11 @@
-import { createReducer } from '@reduxjs/toolkit';
-import { setGenre } from './actions';
-import { filmsInfo } from '../mocs/films';
+import { combineReducers } from '@reduxjs/toolkit';
+import { ReducerName } from '../types/reducer-name';
+import { authorizationReducer } from './authorization-reducer/authorization-reduser';
+import { filmReducer } from './film-reducer/film-reducer';
+import { mainReducer } from './main-reducer/main-reducer';
 
-
-export const DEFAULT_GENRE = 'All genres';
-
-const initialState = {
-  films: filmsInfo,
-  genre: DEFAULT_GENRE,
-  genreFilms: filmsInfo,
-};
-
-const reducer = createReducer(initialState, (builder) => {
-  builder.addCase(setGenre, (state, action) => {
-    const { genre } = action.payload;
-
-    state.genre = genre;
-    state.genreFilms =
-      genre === DEFAULT_GENRE
-        ? filmsInfo
-        : filmsInfo.filter((film) => film.genre === genre);
-  });
+export const reducer = combineReducers({
+  [ReducerName.Film]: filmReducer.reducer,
+  [ReducerName.Main]: mainReducer.reducer,
+  [ReducerName.Authorzation]: authorizationReducer.reducer
 });
-
-export { reducer };

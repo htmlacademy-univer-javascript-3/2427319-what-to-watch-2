@@ -7,11 +7,11 @@ interface LogoProps {
 }
 
 const LogoComponent: React.FC<LogoProps> = ({ className }) => (
-  <div className="logo">
-    <Link className={`logo__link ${className ? className : ''}`} to={RouteLinks.MAIN}>
-      <span className="logo__letter logo__letter--1">W</span>
-      <span className="logo__letter logo__letter--2">T</span>
-      <span className="logo__letter logo__letter--3">W</span>
+  <div data-testid="logo" className="logo">
+    <Link data-testid="logo-link" className={`logo__link ${className ? className : ''}`} to={RouteLinks.MAIN}>
+      <span data-testid="logo-letter" className="logo__letter logo__letter--1">W</span>
+      <span data-testid="logo-letter" className="logo__letter logo__letter--2">T</span>
+      <span data-testid="logo-letter" className="logo__letter logo__letter--3">W</span>
     </Link>
   </div>
 );

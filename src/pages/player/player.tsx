@@ -1,17 +1,27 @@
 import React, {
   useState,
   useRef,
-  useEffect,
   useCallback,
   useMemo,
+  useEffect,
 } from 'react';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
-import { formatTime, useFilmById } from '../../hooks/films';
+import { formatTime } from '../../hooks/films';
 import { RouteLinks } from '../../router/consts';
+import { Spinner } from '../../components/spinner/spinner';
+import { useAppDispatch, useAppSelector } from '../../hooks/store';
+import { ReducerName } from '../../types/reducer-name';
+import { fetchFilm } from '../../store/api-actions';
 
 const PlayerPage: React.FC = () => {
   const { id } = useParams();
-  const film = useFilmById(id);
+  const dispatch = useAppDispatch();
+  const film = useAppSelector((state) => state[ReducerName.Film].film);
+  const isLoading = useAppSelector((state) => state[ReducerName.Film].isLoading);
+
+  if (id && id !== film?.id) {
+    dispatch(fetchFilm(id));
+  }
 
   const navigate = useNavigate();
 
@@ -78,7 +88,11 @@ const PlayerPage: React.FC = () => {
   }, [handleMouseMove, handleMouseUp, isDragging]);
 
   useEffect(() => {
-    const videoElement = videoRef.current as HTMLVideoElement;
+    if (!videoRef.current) {
+      return;
+    }
+
+    const videoElement = videoRef.current;
 
     const handleLoadedMetadata = () => {
       setTime((prevTime) => ({ ...prevTime, duration: videoElement.duration }));
@@ -91,10 +105,8 @@ const PlayerPage: React.FC = () => {
       }));
     };
 
-    if (videoElement) {
-      videoElement.addEventListener('loadedmetadata', handleLoadedMetadata);
-      videoElement.addEventListener('timeupdate', handleTimeUpdate);
-    }
+    videoElement.addEventListener('loadedmetadata', handleLoadedMetadata);
+    videoElement.addEventListener('timeupdate', handleTimeUpdate);
 
     return () => {
       if (videoElement) {
@@ -124,9 +136,16 @@ const PlayerPage: React.FC = () => {
     }
   }, []);
 
-  const exitPlayer = useCallback(() => id && navigate(`/films/${id}`), [id, navigate]);
+  const exitPlayer = useCallback(
+    () => id && navigate(`/films/${id}`),
+    [id, navigate]
+  );
 
-  if (!film) {
+  if (isLoading) {
+    return <Spinner view='display' />;
+  }
+
+  if (!film || !id) {
     return <Navigate to={RouteLinks.NOT_FOUND} />;
   }
 
@@ -134,9 +153,10 @@ const PlayerPage: React.FC = () => {
     <div className="player">
       <video
         ref={videoRef}
-        src={film.video}
+        src={film.videoLink}
         className="player__video"
-        poster={film.bgSrc}
+        poster={film.backgroundImage}
+        data-testid="video-player"
       />
 
       <button type="button" className="player__exit" onClick={exitPlayer}>
@@ -148,7 +168,7 @@ const PlayerPage: React.FC = () => {
           <div className="player__time">
             <progress
               className="player__progress"
-              value={togglerPosition > progress ? togglerPosition : progress}
+              value={togglerPosition > progress ? togglerPosition.toString() : progress.toString()}
               max="100"
               ref={progressRef}
             />
@@ -169,7 +189,9 @@ const PlayerPage: React.FC = () => {
         </div>
 
         <div className="player__controls-row">
-          <button type="button" className="player__play" onClick={togglePlay}>
+          <button type="button" data-testid="play-button"
+            className="player__play" onClick={togglePlay}
+          >
             {isPlaying ? (
               <svg viewBox="0 0 19 19" width="19" height="19">
                 <use xlinkHref="#pause"></use>
@@ -181,7 +203,7 @@ const PlayerPage: React.FC = () => {
             )}
             <span>{isPlaying ? 'Pause' : 'Play'}</span>
           </button>
-          <div className="player__name">{film.title}</div>
+          <div className="player__name">{film.name}</div>
 
           <button
             type="button"
