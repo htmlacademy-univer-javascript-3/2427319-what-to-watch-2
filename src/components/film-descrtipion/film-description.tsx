@@ -4,20 +4,17 @@ import { Overview } from './tab-panels/overview';
 import { Details as FilmDetails } from './tab-panels/details';
 import { Reviews as FilmReviews } from './tab-panels/reviews';
 import { Film } from '../../types/film';
+import { TabTypes } from '../../types/tabs';
 
 interface FilmDescriptionProps {
   film: Film;
 }
 
-const TAB_TYPES = ['Overview', 'Details', 'Reviews'] as const;
-
-export type TTabs = typeof TAB_TYPES[number];
-
 const FilmDescriptionComponent: FC<FilmDescriptionProps> = ({ film }) => {
-  const [activeTab, setActiveTab] = useState<string>(TAB_TYPES[0]);
+  const [activeTab, setActiveTab] = useState<string>(TabTypes[0]);
 
   const handleTabClick = useCallback((tab: string) => {
-    const foundTab = TAB_TYPES.find((currentTab) => tab === currentTab);
+    const foundTab = TabTypes.find((currentTab) => tab === currentTab);
     if (foundTab) {
       setActiveTab(tab);
     }
@@ -25,11 +22,11 @@ const FilmDescriptionComponent: FC<FilmDescriptionProps> = ({ film }) => {
 
   const panel = useMemo(() => {
     switch (activeTab) {
-      case TAB_TYPES[0]:
+      case TabTypes[0]:
         return <Overview film={film} />;
-      case TAB_TYPES[1]:
+      case TabTypes[1]:
         return <FilmDetails film={film} />;
-      case TAB_TYPES[2]:
+      case TabTypes[2]:
         return <FilmReviews />;
       default:
         return null;
@@ -37,7 +34,15 @@ const FilmDescriptionComponent: FC<FilmDescriptionProps> = ({ film }) => {
   }, [activeTab, film]);
 
   useEffect(() => {
-    setActiveTab(TAB_TYPES[0]);
+    let isMounted = true;
+
+    if (isMounted) {
+      setActiveTab(TabTypes[0]);
+    }
+
+    return () => {
+      isMounted = false;
+    };
   }, [film.id]);
 
   return (

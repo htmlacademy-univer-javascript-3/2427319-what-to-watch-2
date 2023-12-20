@@ -12,14 +12,22 @@ const MyListPage: React.FC = () => {
   const favoriteFilms = useAppSelector((state) => state[ReducerName.Main].favoriteFilms);
 
   useEffect(() => {
-    dispatch(fetchFavoriteFilms());
+    let isMounted = true;
+
+    if (isMounted) {
+      dispatch(fetchFavoriteFilms());
+    }
+
+    return () => {
+      isMounted = false;
+    };
   }, [dispatch]);
 
   return (
     <div className="user-page">
       <Header className="user-page__head">
         <h1 className="page-title user-page__title">
-          My list <span className="user-page__film-count">{favoriteFilms.length}</span>
+          My list <span data-testid="favorite-count" className="user-page__film-count">{favoriteFilms.length}</span>
         </h1>
       </Header>
 

@@ -6,7 +6,7 @@ import { AuthorizationReducerState } from '../../types/authorization-reducer-sta
 import { AuthorizationStatus } from '../../types/authorization-status';
 
 const initialState: AuthorizationReducerState = {
-  authorizationStatus: AuthorizationStatus.IDLE,
+  authorizationStatus: AuthorizationStatus.Idle,
   user: null,
 };
 
@@ -19,19 +19,19 @@ export const authorizationReducer = createSlice({
       .addCase(logout.fulfilled, (state) => {
         dropToken();
         state.user = null;
-        state.authorizationStatus = AuthorizationStatus.NOT_AUTHORIZED;
+        state.authorizationStatus = AuthorizationStatus.Unauthorized;
       })
       .addCase(login.fulfilled, (state, action) => {
         saveToken(action.payload.token);
         state.user = action.payload;
-        state.authorizationStatus = AuthorizationStatus.AUTHORIZED;
+        state.authorizationStatus = AuthorizationStatus.Authorized;
       })
       .addCase(checkAuth.fulfilled, (state, action) => {
         state.user = action.payload;
-        state.authorizationStatus = AuthorizationStatus.AUTHORIZED;
+        state.authorizationStatus = AuthorizationStatus.Authorized;
       })
       .addCase(checkAuth.rejected, (state) => {
-        state.authorizationStatus = AuthorizationStatus.NOT_AUTHORIZED;
+        state.authorizationStatus = AuthorizationStatus.Unauthorized;
       });
   },
 });

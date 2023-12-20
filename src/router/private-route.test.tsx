@@ -11,7 +11,7 @@ describe('PrivateRoute', () => {
 
   it('should render public route when user is not authorized', () => {
     const store = mockStore({
-      [ReducerName.Authorzation]: { authorizationStatus: AuthorizationStatus.NOT_AUTHORIZED },
+      [ReducerName.Authorzation]: { authorizationStatus: AuthorizationStatus.Unauthorized },
     });
 
     render(
@@ -31,7 +31,7 @@ describe('PrivateRoute', () => {
 
   it('should render private route when user is authorized', () => {
     const store = mockStore({
-      [ReducerName.Authorzation]: { authorizationStatus: AuthorizationStatus.AUTHORIZED },
+      [ReducerName.Authorzation]: { authorizationStatus: AuthorizationStatus.Authorized },
     });
 
     render(

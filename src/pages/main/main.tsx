@@ -12,7 +12,14 @@ const MainPage: React.FC = () => {
   const promo = useAppSelector((state) => state[ReducerName.Main].promo);
 
   useLayoutEffect(() => {
-    dispatch(fetchPromo());
+    let isMounted = true;
+
+    if (isMounted) {
+      dispatch(fetchPromo());
+    }
+    return () => {
+      isMounted = false;
+    };
   }, [dispatch]);
 
   if(!promo) {
