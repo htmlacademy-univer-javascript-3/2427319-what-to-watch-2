@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { useAppDispatch } from '../../hooks/store';
-import { useNavigate } from 'react-router-dom';
 import { addReview } from '../../store/api-actions';
+import { useNavigate } from 'react-router-dom';
 
 const RATING = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
 
@@ -16,6 +16,8 @@ const AddReviewComponent: React.FC<AddReviewFormProps> = ({ filmId }) => {
   const [reviewText, setReviewText] = useState('');
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const backToFilm = useCallback(() => navigate(`/films/${filmId}`),[filmId, navigate]);
+
 
   const handleRatingChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,12 +38,11 @@ const AddReviewComponent: React.FC<AddReviewFormProps> = ({ filmId }) => {
       event.preventDefault();
 
       dispatch(
-        addReview({ filmId: filmId, rating: Number(rating), comment: reviewText })
-      ).then(() => {
-        navigate(`/films/${filmId}`);
-      });
+        addReview({ filmId: filmId, rating: Number(rating), comment: reviewText, backToFilm })
+      );
+
     },
-    [dispatch, filmId, navigate, rating, reviewText]
+    [backToFilm, dispatch, filmId, rating, reviewText]
   );
 
   const isDisabled = !rating || !reviewText || reviewText.length < MIN_LEN_REVIEW || reviewText.length > MAX_LEN_REVIEW;

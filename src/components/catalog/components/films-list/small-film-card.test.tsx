@@ -14,8 +14,9 @@ const mockFilm = films[0];
 const mockStore = configureMockStore<State>([thunk]);
 
 describe('FilmsList Component', () => {
-  const onMouseEnterMock = () => (true);
-  const onMouseLeaveMock = () => (true);
+  const onMouseEnterMock = () => true;
+  const onMouseLeaveMock = () => true;
+
   it('should handle card hover correctly', () => {
     const store = mockStore({
       [ReducerName.Main]: {

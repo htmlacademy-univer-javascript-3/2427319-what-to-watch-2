@@ -24,6 +24,7 @@ describe('MainPage Component', () => {
         promo: {...promoFilm, name: uniquePromoName},
         genreFilms: films,
         films: films,
+        isPromoLoading: false,
       },
       [ReducerName.Authorzation]: {
         authorizationStatus: AuthorizationStatus.Authorized,
@@ -56,6 +57,7 @@ describe('MainPage Component', () => {
     const store = mockStore({
       [ReducerName.Main]: {
         promo: null,
+        isPromoLoading: true,
       },
     });
 

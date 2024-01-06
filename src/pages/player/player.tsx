@@ -2,16 +2,20 @@ import React, {
   useState,
   useRef,
   useCallback,
+  useLayoutEffect,
   useMemo,
-  useEffect,
 } from 'react';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
-import { formatTime } from '../../hooks/films';
 import { RouteLinks } from '../../router/consts';
 import { Spinner } from '../../components/spinner/spinner';
 import { useAppDispatch, useAppSelector } from '../../hooks/store';
 import { ReducerName } from '../../types/reducer-name';
 import { fetchFilm } from '../../store/api-actions';
+import { Page404 } from '../page-404';
+
+const SECONDS_IN_HOUR = 3600;
+const SECONDS_IN_MINUTE = 60;
+
 
 const PlayerPage: React.FC = () => {
   const { id } = useParams();
@@ -19,114 +23,20 @@ const PlayerPage: React.FC = () => {
   const film = useAppSelector((state) => state[ReducerName.Film].film);
   const isLoading = useAppSelector((state) => state[ReducerName.Film].isLoading);
 
-  if (id && id !== film?.id) {
-    dispatch(fetchFilm(id));
-  }
-
   const navigate = useNavigate();
 
   const videoRef = useRef<HTMLVideoElement>(null);
-  const togglerRef = useRef<HTMLDivElement>(null);
-  const progressRef = useRef<HTMLProgressElement>(null);
-  const [isDragging, setIsDragging] = useState(false);
+
   const [isPlaying, setIsPlaying] = useState(false);
-  const [time, setTime] = useState({ current: 0, duration: 0 });
+  const [time, setTime] = useState<number>(0);
+  const progress = useMemo(() => Number(time) / Number(videoRef.current?.duration || 1) * 100, [time]);
 
-  const progress = useMemo(() => (time.current / time.duration) * 100, [time]);
-  const [togglerPosition, setTogglerPosition] = useState(0);
-
-  const handleMouseUp = useCallback(() => {
-    setIsDragging(false);
-
-    document.removeEventListener('mouseup', handleMouseUp);
-  }, []);
-
-  const handleTogglerMouseDown = useCallback(() => {
-    setIsDragging(true);
-
-    if (videoRef.current) {
-      videoRef.current.currentTime =
-        (togglerPosition / 100) * videoRef.current.duration;
-    }
-
-    document.addEventListener('mouseup', handleMouseUp);
-  }, [handleMouseUp, togglerPosition]);
-
-  const handleMouseMove = useCallback(
-    (e: MouseEvent) => {
-      if (
-        isDragging &&
-        progressRef.current &&
-        togglerRef.current &&
-        videoRef.current
-      ) {
-        const videoWidth = progressRef.current.clientWidth;
-        const mouseX =
-          e.clientX - progressRef.current.getBoundingClientRect().left;
-        const newTime = (mouseX / videoWidth) * videoRef.current.duration;
-
-        const newTogglerPosition = (newTime / videoRef.current.duration) * 100;
-        setTogglerPosition(newTogglerPosition);
-
-        togglerRef.current.style.left = `${newTogglerPosition}%`;
-      }
-    },
-    [isDragging]
-  );
-
-  useEffect(() => {
-    if (isDragging) {
-      document.addEventListener('mousemove', handleMouseMove);
-    } else {
-      document.removeEventListener('mousemove', handleMouseMove);
-    }
-
-    return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseup', handleMouseUp);
-    };
-  }, [handleMouseMove, handleMouseUp, isDragging]);
-
-  useEffect(() => {
-    if (!videoRef.current) {
-      return;
-    }
-
-    const videoElement = videoRef.current;
-
-    const handleLoadedMetadata = () => {
-      setTime((prevTime) => ({ ...prevTime, duration: videoElement.duration }));
-    };
-
-    const handleTimeUpdate = () => {
-      setTime((prevTime) => ({
-        ...prevTime,
-        current: videoElement.currentTime,
-      }));
-    };
-
-    videoElement.addEventListener('loadedmetadata', handleLoadedMetadata);
-    videoElement.addEventListener('timeupdate', handleTimeUpdate);
-
-    return () => {
-      if (videoElement) {
-        videoElement.removeEventListener(
-          'loadedmetadata',
-          handleLoadedMetadata
-        );
-        videoElement.removeEventListener('timeupdate', handleTimeUpdate);
-      }
-    };
-  }, []);
 
   const togglePlay = useCallback(() => {
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause();
-      } else {
-        videoRef.current.play();
-      }
-      setIsPlaying(!isPlaying);
+    if (isPlaying) {
+      videoRef.current?.pause();
+    } else {
+      videoRef.current?.play();
     }
   }, [isPlaying]);
 
@@ -141,15 +51,37 @@ const PlayerPage: React.FC = () => {
     [id, navigate]
   );
 
+  useLayoutEffect(() => {
+    let isMounted = true;
+
+    if (isMounted && id) {
+      dispatch(fetchFilm(id));
+    }
+    return () => {
+      isMounted = false;
+    };
+  }, [id, dispatch]);
+
+  function getTimeLeft() {
+    if (film === null || !videoRef.current) {
+      return '00:00:00';
+    }
+    const timeLeft = (videoRef.current?.duration || 0) - time;
+    const hours = Math.floor(timeLeft / SECONDS_IN_HOUR).toString().padStart(2, '0');
+    const minutes = Math.floor((timeLeft / SECONDS_IN_MINUTE) % SECONDS_IN_MINUTE).toString().padStart(2, '0');
+    const seconds = Math.floor((timeLeft % SECONDS_IN_MINUTE)).toString().padStart(2, '0');
+    return (hours !== '00') ? `${hours}:${minutes}:${seconds}` : `${minutes}:${seconds}`;
+  }
+
   if (isLoading) {
     return <Spinner view='display' />;
   }
 
-  if (!film || !id) {
+  if (!id) {
     return <Navigate to={RouteLinks.NOT_FOUND} />;
   }
 
-  return (
+  return film ? (
     <div className="player">
       <video
         ref={videoRef}
@@ -157,6 +89,10 @@ const PlayerPage: React.FC = () => {
         className="player__video"
         poster={film.backgroundImage}
         data-testid="video-player"
+        autoPlay
+        onPlay={() => setIsPlaying(true)}
+        onPause={() => setIsPlaying(false)}
+        onTimeUpdate={() => setTime(videoRef.current?.currentTime || 0)}
       />
 
       <button type="button" className="player__exit" onClick={exitPlayer}>
@@ -168,24 +104,16 @@ const PlayerPage: React.FC = () => {
           <div className="player__time">
             <progress
               className="player__progress"
-              value={togglerPosition > progress ? togglerPosition.toString() : progress.toString()}
-              max="100"
-              ref={progressRef}
+              value={progress}
+              max='100'
             />
             <div
               className="player__toggler"
-              style={{
-                left: `${
-                  togglerPosition > progress ? togglerPosition : progress
-                }%`,
-              }}
-              ref={togglerRef}
-              onMouseDown={handleTogglerMouseDown}
             >
               Toggler
             </div>
           </div>
-          <div className="player__time-value">{formatTime(time.current)}</div>
+          <div className="player__time-value">-{getTimeLeft()}</div>
         </div>
 
         <div className="player__controls-row">
@@ -218,6 +146,8 @@ const PlayerPage: React.FC = () => {
         </div>
       </div>
     </div>
+  ) : (
+    <Page404 />
   );
 };
 

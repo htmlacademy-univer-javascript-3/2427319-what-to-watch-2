@@ -11,6 +11,7 @@ import { createAPI } from '../services/api';
 import { AuthorizationStatus } from '../types/authorization-status';
 import { ReducerName } from '../types/reducer-name';
 import AppRouter from './app-router';
+import { ToastContainer } from 'react-toastify';
 
 const api = createAPI();
 const middlewares = [thunk.withExtraArgument(api)];
@@ -51,6 +52,7 @@ describe('logged in routing', () => {
     <Provider store={store}>
       <MemoryRouter initialEntries={routes}>
         <AppRouter />
+        <ToastContainer position='bottom-right' />
       </MemoryRouter>
     </Provider>
   );

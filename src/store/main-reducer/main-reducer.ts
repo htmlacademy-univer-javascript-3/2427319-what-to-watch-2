@@ -3,6 +3,7 @@ import { ReducerName } from '../../types/reducer-name';
 import { Genre } from '../../types/genre';
 import { MainReducerState } from '../../types/main-reducer-state';
 import {
+  addReview,
   fetchFavoriteFilms,
   fetchFilms,
   fetchPromo,
@@ -20,6 +21,7 @@ const initialState: MainReducerState = {
   promo: null,
   favoriteFilms: [],
   favoriteCount: 0,
+  isPromoLoading: false,
 };
 
 export const mainReducer = createSlice({
@@ -59,6 +61,14 @@ export const mainReducer = createSlice({
       })
       .addCase(fetchPromo.fulfilled, (state, action) => {
         state.promo = action.payload;
+        state.isPromoLoading = false;
+
+      })
+      .addCase(fetchPromo.rejected, (state) => {
+        state.isPromoLoading = false;
+      })
+      .addCase(fetchPromo.pending, (state) => {
+        state.isPromoLoading = true;
       })
       .addCase(setFavorite.fulfilled, (state, action) => {
         if (state.promo && action.payload.id === state.promo.id) {
@@ -69,6 +79,10 @@ export const mainReducer = createSlice({
       .addCase(logout.fulfilled, (state) => {
         state.favoriteFilms = [];
         state.favoriteCount = 0;
+      }).addCase(addReview.fulfilled, (state, action) => {
+        state.error = null;
+
+        action.payload.backToFilm();
       });
   },
 });

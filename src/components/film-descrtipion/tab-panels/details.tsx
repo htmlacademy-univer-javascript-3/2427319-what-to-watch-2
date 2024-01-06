@@ -24,6 +24,9 @@ interface DetailsProps {
 const FilmDetailsComponent: FC<DetailsProps> = ({ film }) => {
   const { genre, runTime, director, released, starring } = film;
 
+  const hours = Math.floor(runTime / 60);
+  const minutes = runTime % 60;
+
   return (
     <div className="film-card__text film-card__row">
       <div className="film-card__text-col">
@@ -32,7 +35,7 @@ const FilmDetailsComponent: FC<DetailsProps> = ({ film }) => {
       </div>
 
       <div className="film-card__text-col">
-        <FilmDetailsItem name="Run Time">{runTime}</FilmDetailsItem>
+        <FilmDetailsItem name="Run Time">{`${hours}h ${minutes}m`}</FilmDetailsItem>
         <FilmDetailsItem name="Genre">{genre}</FilmDetailsItem>
         <FilmDetailsItem name="Released">{released}</FilmDetailsItem>
       </div>

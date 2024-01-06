@@ -5,3 +5,8 @@ export interface Review {
   rating: number;
   user: string;
 }
+
+export interface IAddReview {
+  backToFilm: () => void;
+  data: Review;
+}

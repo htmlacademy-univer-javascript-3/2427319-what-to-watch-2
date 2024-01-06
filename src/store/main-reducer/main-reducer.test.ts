@@ -18,6 +18,7 @@ describe('main-reducer', () => {
       genreFilms: [],
       currentGenre: Genre.DefaultGenre,
       isFilmsLoading: false,
+      isPromoLoading: false,
       error: null,
       films: [],
       favoriteCount: 0
@@ -33,6 +34,7 @@ describe('main-reducer', () => {
         currentGenre: Genre.DefaultGenre,
         isFilmsLoading: false,
         error: null,
+        isPromoLoading: false,
         films: [],
         favoriteCount: 0
       });

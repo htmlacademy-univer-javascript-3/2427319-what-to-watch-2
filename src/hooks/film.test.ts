@@ -1,4 +1,5 @@
-import { useFilmRating, formatTime } from './films';
+import { useFilmRating } from './films';
+
 describe('useFilmRating', () => {
   it('should return "Awesome" for a rating of 10 or greater', () => {
     expect(useFilmRating(10)).toBe('Awesome');
@@ -26,10 +27,3 @@ describe('useFilmRating', () => {
   });
 });
 
-describe('formatTime', () => {
-  it('should format time correctly', () => {
-    expect(formatTime(3666)).toBe('01:01:06');
-    expect(formatTime(126)).toBe('00:02:06');
-    expect(formatTime(59)).toBe('00:00:59');
-  });
-});

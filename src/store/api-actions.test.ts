@@ -168,6 +168,7 @@ describe('async actions', () => {
       filmId: '1',
       comment: 'comment',
       rating: 8,
+      backToFilm: () => null,
     };
 
     mockAPI
