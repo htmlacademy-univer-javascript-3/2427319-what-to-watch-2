@@ -2,7 +2,7 @@ import React, { useLayoutEffect } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 import { FilmsList } from '../../components/catalog/components/films-list';
 import { FilmCardButtons } from '../../components/film-card/components/film-card-buttons';
-import { FilmTabs } from '../../components/film-descrtipion/film-tabs.tsx';
+import { FilmTabs } from '../../components/film-description/film-tabs.tsx';
 import { Footer } from '../../components/footer';
 import { Header } from '../../components/header';
 import { Poster } from '../../components/poster';
