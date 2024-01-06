@@ -1,18 +1,17 @@
-import { render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
 import { configureMockStore } from '@jedmao/redux-mock-store';
-import { FilmDescription } from './film-description';
+import { render, screen } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import { MemoryRouter } from 'react-router-dom';
+import filmsMock from '../../mocks/films-mock.ts';
 import { ReducerName } from '../../types/reducer-name';
-import films from '../../mocks/films';
 import { TabTypes } from '../../types/tabs';
+import { FilmTabs } from './film-tabs.tsx';
 
 const mockStore = configureMockStore();
+const mockFilm = filmsMock[0];
 
-const mockFilm = films[0];
-
-describe('FilmDescription Component', () => {
-  it('should render tabs and the default panel', () => {
+describe('FilmTabs Component', () => {
+  beforeEach(() => {
     const store = mockStore({
       [ReducerName.Film]: {
         film: mockFilm,
@@ -22,15 +21,17 @@ describe('FilmDescription Component', () => {
     render(
       <Provider store={store}>
         <MemoryRouter>
-          <FilmDescription film={mockFilm} />
+          <FilmTabs film={mockFilm} />
         </MemoryRouter>
       </Provider>
     );
+  });
 
+  it('renders all tabs and the default panel', () => {
     const tabs = Object.values(TabTypes);
 
-    for (const tab of tabs) {
+    tabs.forEach((tab) => {
       expect(screen.getByText(tab)).toBeInTheDocument();
-    }
+    });
   });
 });

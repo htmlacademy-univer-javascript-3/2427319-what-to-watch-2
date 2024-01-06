@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { ReducerName } from '../../types/reducer-name';
 import { dropToken, saveToken } from '../../services/token';
-import { checkAuth, login, logout } from '../api-actions';
 import { AuthorizationReducerState } from '../../types/authorization-reducer-state';
 import { AuthorizationStatus } from '../../types/authorization-status';
+import { ReducerName } from '../../types/reducer-name';
+import { checkAuth, login, logout } from '../api-actions';
 
 const initialState: AuthorizationReducerState = {
   authorizationStatus: AuthorizationStatus.Idle,

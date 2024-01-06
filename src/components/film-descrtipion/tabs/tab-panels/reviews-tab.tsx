@@ -1,7 +1,7 @@
 import { FC, memo } from 'react';
-import { useAppSelector } from '../../../hooks/store';
-import { ReducerName } from '../../../types/reducer-name';
-import { Review } from '../../../types/review';
+import { useAppSelector } from '../../../../hooks/store.ts';
+import { ReducerName } from '../../../../types/reducer-name.ts';
+import { Review } from '../../../../types/review.ts';
 
 const ReviewComponent: FC<Review> = ({ comment, user, date, rating }) => {
   const getDateString = (postDate: Date) =>
@@ -30,7 +30,7 @@ const ReviewComponent: FC<Review> = ({ comment, user, date, rating }) => {
   );
 };
 
-const ReviewsComponent: FC = () => {
+const ReviewsTabComponent: FC = () => {
   const reviews = useAppSelector((state) => state[ReducerName.Film].reviews);
 
   return reviews.length ? (
@@ -51,4 +51,4 @@ const ReviewsComponent: FC = () => {
   );
 };
 
-export const Reviews = memo(ReviewsComponent);
+export const ReviewsTab = memo(ReviewsTabComponent);

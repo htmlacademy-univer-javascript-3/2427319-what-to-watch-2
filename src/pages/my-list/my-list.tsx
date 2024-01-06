@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Catalog } from '../../components/catalog';
-import { Header } from '../../components/header';
 import { Footer } from '../../components/footer';
+import { Header } from '../../components/header';
 import { useAppDispatch, useAppSelector } from '../../hooks/store';
 import { fetchFavoriteFilms } from '../../store/api-actions';
 import { ReducerName } from '../../types/reducer-name';
@@ -31,7 +31,7 @@ const MyListPage: React.FC = () => {
         </h1>
       </Header>
 
-      <Catalog withoutButton withoutGenre films={favoriteFilms} />
+      <Catalog showLoadMoreButton={false} showGenreList={false} films={favoriteFilms} />
 
       <Footer />
     </div>

@@ -1,16 +1,15 @@
-import { render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
 import { configureMockStore } from '@jedmao/redux-mock-store';
-import films from '../../mocks/films';
-import { FilmCard } from './film-card';
-import { ReducerName } from '../../types/reducer-name';
+import { render, screen } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import { MemoryRouter } from 'react-router-dom';
+import filmsMock from '../../mocks/films-mock.ts';
 import { AuthorizationStatus } from '../../types/authorization-status';
 import { Genre } from '../../types/genre';
+import { ReducerName } from '../../types/reducer-name';
+import { FilmCard } from './film-card';
 
 const mockStore = configureMockStore();
-
-const mockFilm = films[0];
+const mockFilm = filmsMock[0];
 
 describe('FilmCard Component', () => {
   const initialState = {
@@ -36,9 +35,8 @@ describe('FilmCard Component', () => {
     },
   };
 
-  it('should render the film card with correct details', () => {
+  beforeEach(() => {
     const store = mockStore(initialState);
-
     render(
       <Provider store={store}>
         <MemoryRouter>
@@ -46,25 +44,16 @@ describe('FilmCard Component', () => {
         </MemoryRouter>
       </Provider>
     );
+  });
 
+  it('renders the film card with correct details', () => {
     expect(screen.getByText(mockFilm.name)).toBeInTheDocument();
     expect(screen.getByText(mockFilm.genre)).toBeInTheDocument();
     expect(screen.getByText(mockFilm.released)).toBeInTheDocument();
   });
 
-  it('should have the correct alt text for the background image', () => {
-    const store = mockStore(initialState);
-
-    render(
-      <Provider store={store}>
-        <MemoryRouter>
-          <FilmCard film={mockFilm} />
-        </MemoryRouter>
-      </Provider>
-    );
-
+  it('has the correct alt text for the background image', () => {
     const backgroundImageElement = screen.getByTestId('film-background-image');
-
     expect(backgroundImageElement).toHaveAttribute('alt', mockFilm.name);
   });
 });

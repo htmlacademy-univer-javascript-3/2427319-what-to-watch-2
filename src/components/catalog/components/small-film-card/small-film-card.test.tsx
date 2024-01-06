@@ -1,15 +1,15 @@
-import { fireEvent, render, screen } from '@testing-library/react';
-import { FilmsList } from './films-list';
-import { Provider } from 'react-redux';
 import { configureMockStore } from '@jedmao/redux-mock-store';
-import { ReducerName } from '../../../../types/reducer-name';
-import { State } from '../../../../types/state';
-import thunk from 'redux-thunk';
-import films from '../../../../mocks/films';
+import { fireEvent, render, screen } from '@testing-library/react';
+import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
-import { SmallFilmCard } from './small-film-card';
+import thunk from 'redux-thunk';
+import filmsMock from '../../../../mocks/films-mock.ts';
+import { ReducerName } from '../../../../types/reducer-name.ts';
+import { State } from '../../../../types/state.ts';
+import { FilmsList } from '../films-list';
+import { SmallFilmCard } from './small-film-card.tsx';
 
-const mockFilm = films[0];
+const mockFilm = filmsMock[0];
 
 const mockStore = configureMockStore<State>([thunk]);
 
@@ -17,7 +17,7 @@ describe('FilmsList Component', () => {
   const onMouseEnterMock = () => true;
   const onMouseLeaveMock = () => true;
 
-  it('should handle card hover correctly', () => {
+  it('handles card hover correctly in FilmsList', () => {
     const store = mockStore({
       [ReducerName.Main]: {
         genreFilms: [mockFilm],
@@ -46,7 +46,7 @@ describe('FilmsList Component', () => {
     expect(filmCard).toHaveAttribute('data-active', 'false');
   });
 
-  it('should render active state with VideoPlayer when active', () => {
+  it('renders active state with VideoPlayer in SmallFilmCard', () => {
     render(
       <MemoryRouter>
         <SmallFilmCard film={mockFilm} isActive onMouseEnter={onMouseEnterMock} onMouseLeave={onMouseLeaveMock} />
@@ -60,7 +60,7 @@ describe('FilmsList Component', () => {
     expect(videoPlayer).toBeInTheDocument();
   });
 
-  it('should render inactive state with image when not active', () => {
+  it('renders inactive state with image in SmallFilmCard', () => {
     render(
       <MemoryRouter>
         <SmallFilmCard film={mockFilm} isActive={false} onMouseEnter={onMouseEnterMock} onMouseLeave={onMouseLeaveMock} />

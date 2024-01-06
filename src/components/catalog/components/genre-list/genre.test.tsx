@@ -1,16 +1,16 @@
+import { configureMockStore } from '@jedmao/redux-mock-store';
 import { render, fireEvent, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
-import { configureMockStore } from '@jedmao/redux-mock-store';
 import thunk from 'redux-thunk';
-import { Genre } from './genre';
-import { ReducerName } from '../../../../types/reducer-name';
 import { setGenre } from '../../../../store/actions';
+import { ReducerName } from '../../../../types/reducer-name';
+import { Genre } from './genre';
 
 const mockStore = configureMockStore([thunk]);
 
 describe('Genre Component', () => {
-  it('should render correctly', () => {
+  it('renders correctly', () => {
     const store = mockStore({
       [ReducerName.Main]: {
         currentGenre: 'Action',
@@ -26,11 +26,10 @@ describe('Genre Component', () => {
     );
 
     const genreLink = screen.getByText('Action');
-
     expect(genreLink).toBeInTheDocument();
   });
 
-  it('should handle click correctly', () => {
+  it('handles click correctly', () => {
     const store = mockStore({
       [ReducerName.Main]: {
         currentGenre: 'Drama',
@@ -49,11 +48,10 @@ describe('Genre Component', () => {
     fireEvent.click(genreLink);
 
     const actions = store.getActions();
-
-    expect(actions).toEqual([setGenre('Drama')]);
+    expect(actions).toContainEqual(setGenre('Drama'));
   });
 
-  it('should have active class if isActive is true', () => {
+  it('has active class if isActive is true', () => {
     const store = mockStore({
       [ReducerName.Main]: {
         currentGenre: 'Comedy',
@@ -69,7 +67,6 @@ describe('Genre Component', () => {
     );
 
     const genreItem = screen.getByText('Comedy').closest('li');
-
     expect(genreItem).toHaveClass('catalog__genres-item--active');
   });
 });

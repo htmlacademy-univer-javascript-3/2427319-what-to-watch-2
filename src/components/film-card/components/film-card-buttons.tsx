@@ -1,10 +1,10 @@
 import React, { FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { RouteLinks } from '../../../router/consts';
 import { useAppSelector, useAppDispatch } from '../../../hooks/store';
+import { RouteLinks } from '../../../router/consts';
 import { setFavorite } from '../../../store/api-actions';
-import { ReducerName } from '../../../types/reducer-name';
 import { AuthorizationStatus } from '../../../types/authorization-status';
+import { ReducerName } from '../../../types/reducer-name';
 
 const enum ButtonSize {
   WIDTH = 19,

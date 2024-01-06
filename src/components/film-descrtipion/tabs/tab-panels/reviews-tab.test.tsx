@@ -1,9 +1,9 @@
-import { render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
 import { configureMockStore } from '@jedmao/redux-mock-store';
-import { Reviews } from './reviews';
-import { ReducerName } from '../../../types/reducer-name';
+import { render, screen } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import { MemoryRouter } from 'react-router-dom';
+import { ReducerName } from '../../../../types/reducer-name.ts';
+import { ReviewsTab } from './reviews-tab.tsx';
 
 const mockStore = configureMockStore();
 
@@ -20,7 +20,7 @@ describe('Reviews Component', () => {
     render(
       <Provider store={store}>
         <MemoryRouter>
-          <Reviews />
+          <ReviewsTab />
         </MemoryRouter>
       </Provider>
     );
@@ -36,7 +36,7 @@ describe('Reviews Component', () => {
     render(
       <Provider store={store}>
         <MemoryRouter>
-          <Reviews />
+          <ReviewsTab />
         </MemoryRouter>
       </Provider>
     );

@@ -4,11 +4,11 @@ import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 import thunk from 'redux-thunk';
-import { State } from '../../../types/state';
-import { AuthorizationStatus } from '../../../types/authorization-status';
-import { FilmCardButtons } from './film-card-buttons';
-import { ReducerName } from '../../../types/reducer-name';
 import { createAPI } from '../../../services/api';
+import { AuthorizationStatus } from '../../../types/authorization-status';
+import { ReducerName } from '../../../types/reducer-name';
+import { State } from '../../../types/state';
+import { FilmCardButtons } from './film-card-buttons';
 
 const api = createAPI();
 const middlewares = [thunk.withExtraArgument(api)];
@@ -32,7 +32,7 @@ describe('FilmCardButtons Component', () => {
     render(
       <Provider store={storeAuthorized}>
         <MemoryRouter>
-          <FilmCardButtons filmId="1" isFavorite reviewButton={false} />
+          <FilmCardButtons filmId="1" isFavorite />
         </MemoryRouter>
       </Provider>
     );
@@ -45,7 +45,7 @@ describe('FilmCardButtons Component', () => {
     render(
       <Provider store={storeAuthorized}>
         <MemoryRouter>
-          <FilmCardButtons filmId="1" isFavorite reviewButton={false} />
+          <FilmCardButtons filmId="1" isFavorite/>
         </MemoryRouter>
       </Provider>
     );

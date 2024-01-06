@@ -1,13 +1,13 @@
 import React, { useLayoutEffect } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
-import { Header } from '../../components/header';
-import { RouteLinks } from '../../router/consts';
-import { Poster } from '../../components/poster';
 import { AddReviewForm } from '../../components/add-review-form';
-import { useAppDispatch, useAppSelector } from '../../hooks/store';
+import { Header } from '../../components/header';
+import { Poster } from '../../components/poster';
 import { Spinner } from '../../components/spinner/spinner';
-import { ReducerName } from '../../types/reducer-name';
+import { useAppDispatch, useAppSelector } from '../../hooks/store';
+import { RouteLinks } from '../../router/consts';
 import { fetchFilm } from '../../store/api-actions';
+import { ReducerName } from '../../types/reducer-name';
 import { Page404 } from '../page-404';
 
 const AddReviewPage: React.FC = () => {

@@ -1,8 +1,8 @@
 import { AuthorizationReducerState } from '../../types/authorization-reducer-state';
 import { AuthorizationStatus } from '../../types/authorization-status';
-import { authorizationReducer } from './authorization-reduser';
-import { checkAuth, login, logout } from '../api-actions';
 import { User } from '../../types/user';
+import { checkAuth, login, logout } from '../api-actions';
+import { authorizationReducer } from './authorization-reduser';
 
 
 const mockUser: User = { email: '123', id: 1, avatarUrl: '1234', name: 'test', token: 'testtest' };

@@ -1,23 +1,24 @@
 import React, { useCallback, useState } from 'react';
-import { GenreList } from './components/genre-list';
-import { FilmsList } from './components/films-list';
-import { Button } from '../button';
 import { useAppSelector } from '../../hooks/store';
-import { ReducerName } from '../../types/reducer-name';
 import { Film } from '../../types/film';
-
-const DEFAULT_LIST_LENGTH = 8;
+import { ReducerName } from '../../types/reducer-name';
+import { Button } from '../button';
+import { FilmsList } from './components/films-list';
+import { GenreList } from './components/genre-list';
 
 interface CatalogProps {
-  withoutGenre?: boolean;
-  withoutButton?: boolean;
+  showGenreList?: boolean;
+  showLoadMoreButton?: boolean;
   listLength?: number;
   films?: Film[];
 }
 
+const DEFAULT_LIST_LENGTH = 8;
+
+
 const CatalogComponent: React.FC<CatalogProps> = ({
-  withoutGenre = false,
-  withoutButton = false,
+  showGenreList = true,
+  showLoadMoreButton = true,
   listLength,
   films,
 }) => {
@@ -28,13 +29,13 @@ const CatalogComponent: React.FC<CatalogProps> = ({
     setMaxLength((prev) => prev + DEFAULT_LIST_LENGTH);
   },[]);
 
-  const showButton = !withoutButton && stateGenreFilms.length >= maxLength;
+  const showButton = showLoadMoreButton && stateGenreFilms.length >= maxLength;
 
   return (
     <section className="catalog">
       <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-      {!withoutGenre ? <GenreList /> : null}
+      {showGenreList ? <GenreList /> : null}
 
       <FilmsList maxLength={maxLength} films={films} />
 

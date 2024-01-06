@@ -1,18 +1,18 @@
-import React, { useLayoutEffect } from 'react';
-import { FilmCard } from '../../components/film-card';
+import React, { useEffect } from 'react';
 import { Catalog } from '../../components/catalog';
+import { FilmCard } from '../../components/film-card';
 import { Footer } from '../../components/footer';
-import { useAppDispatch, useAppSelector } from '../../hooks/store';
 import { Spinner } from '../../components/spinner/spinner';
-import { ReducerName } from '../../types/reducer-name';
+import { useAppDispatch, useAppSelector } from '../../hooks/store';
 import { fetchPromo } from '../../store/api-actions';
+import { ReducerName } from '../../types/reducer-name';
 import { Page404 } from '../page-404';
 
 const MainPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const { isPromoLoading, promo } = useAppSelector((state) => state[ReducerName.Main]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     let isMounted = true;
 
     if (isMounted) {

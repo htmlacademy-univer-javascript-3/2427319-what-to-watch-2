@@ -1,20 +1,20 @@
-import { render, screen, waitFor } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
 import { configureMockStore } from '@jedmao/redux-mock-store';
+import { render, screen, waitFor } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import { MemoryRouter } from 'react-router-dom';
 import thunk from 'redux-thunk';
+import filmsMock from '../../mocks/films-mock.ts';
 import { createAPI } from '../../services/api';
+import { AuthorizationStatus } from '../../types/authorization-status';
+import { ReducerName } from '../../types/reducer-name';
 import { State } from '../../types/state';
 import { Main } from './main';
-import { ReducerName } from '../../types/reducer-name';
-import films from '../../mocks/films';
-import { AuthorizationStatus } from '../../types/authorization-status';
 
 const api = createAPI();
 const middlewares = [thunk.withExtraArgument(api)];
 const mockStore = configureMockStore<State>(middlewares);
 
-const promoFilm = films[0];
+const promoFilm = filmsMock[0];
 
 describe('MainPage Component', () => {
   it('renders Main page with promo film', async () => {
@@ -22,8 +22,8 @@ describe('MainPage Component', () => {
     const store = mockStore({
       [ReducerName.Main]: {
         promo: {...promoFilm, name: uniquePromoName},
-        genreFilms: films,
-        films: films,
+        genreFilms: filmsMock,
+        films: filmsMock,
         isPromoLoading: false,
       },
       [ReducerName.Authorzation]: {

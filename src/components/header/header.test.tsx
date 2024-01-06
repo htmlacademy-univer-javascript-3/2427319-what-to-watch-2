@@ -1,15 +1,20 @@
-import { render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
 import { configureMockStore } from '@jedmao/redux-mock-store';
-import { Header } from './header';
+import { render, screen } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import { MemoryRouter } from 'react-router-dom';
 import { AuthorizationStatus } from '../../types/authorization-status';
 import { ReducerName } from '../../types/reducer-name';
+import { Header } from './header';
 
 const mockStore = configureMockStore();
 
 describe('Header Component', () => {
-  it('renders the header with the correct elements for unauthorized user', () => {
+  const user = {
+    name: 'John Doe',
+    avatarUrl: 'path/to/avatar.jpg',
+  };
+
+  it('renders for unauthorized user', () => {
     const store = mockStore({
       [ReducerName.Authorzation]: {
         authorizationStatus: AuthorizationStatus.Unauthorized,
@@ -30,12 +35,7 @@ describe('Header Component', () => {
     expect(screen.queryByText('Sign out')).not.toBeInTheDocument();
   });
 
-  it('renders the header with the correct elements for authorized user', () => {
-    const user = {
-      name: 'John Doe',
-      avatarUrl: 'path/to/avatar.jpg',
-    };
-
+  it('renders for authorized user', () => {
     const store = mockStore({
       [ReducerName.Authorzation]: {
         authorizationStatus: AuthorizationStatus.Authorized,

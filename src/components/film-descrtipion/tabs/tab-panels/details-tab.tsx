@@ -1,9 +1,11 @@
 import { FC, ReactNode, memo } from 'react';
-import { Film } from '../../../types/film';
+import { Film } from '../../../../types/film.ts';
 interface FilmDetailsItemProps {
   name: string;
   children: ReactNode;
 }
+
+const MINUTES_IN_HOUR = 60;
 
 const FilmDetailsItemComponent: FC<FilmDetailsItemProps> = ({
   name,
@@ -21,11 +23,10 @@ interface DetailsProps {
   film: Film;
 }
 
-const FilmDetailsComponent: FC<DetailsProps> = ({ film }) => {
+const DetailsTabComponent: FC<DetailsProps> = ({ film }) => {
   const { genre, runTime, director, released, starring } = film;
-
-  const hours = Math.floor(runTime / 60);
-  const minutes = runTime % 60;
+  const hours = Math.floor(runTime / MINUTES_IN_HOUR);
+  const minutes = runTime % MINUTES_IN_HOUR;
 
   return (
     <div className="film-card__text film-card__row">
@@ -43,4 +44,4 @@ const FilmDetailsComponent: FC<DetailsProps> = ({ film }) => {
   );
 };
 
-export const Details = memo(FilmDetailsComponent);
+export const DetailsTab = memo(DetailsTabComponent);

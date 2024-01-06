@@ -1,4 +1,4 @@
-export const useFilmRating = (rating = 0) => {
+export const useFilmRatingLabel = (rating = 0): string => {
   if (rating >= 10) {
     return 'Awesome';
   } else if (rating >= 8) {
@@ -10,4 +10,3 @@ export const useFilmRating = (rating = 0) => {
   }
   return 'Bad';
 };
-

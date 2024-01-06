@@ -1,12 +1,12 @@
 import React, { useCallback, useMemo } from 'react';
-import { Logo } from '../logo';
 import { Link, useNavigate } from 'react-router-dom';
-import { RouteLinks } from '../../router/consts';
 import { useAppDispatch, useAppSelector } from '../../hooks/store';
-import { ReducerName } from '../../types/reducer-name';
-import { AuthorizationStatus } from '../../types/authorization-status';
+import { RouteLinks } from '../../router/consts';
 import { logout } from '../../store/api-actions';
+import { AuthorizationStatus } from '../../types/authorization-status';
 import { HeaderImageStyles } from '../../types/image';
+import { ReducerName } from '../../types/reducer-name';
+import { Logo } from '../logo';
 
 interface HeaderProps {
   children?: React.ReactNode;

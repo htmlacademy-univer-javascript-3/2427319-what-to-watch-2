@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { ReducerName } from '../../types/reducer-name';
 import { FilmReducerState } from '../../types/film-reducer-state';
+import { ReducerName } from '../../types/reducer-name';
 import {
   setFavorite,
   fetchReviews,

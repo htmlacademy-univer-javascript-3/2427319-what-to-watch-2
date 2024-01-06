@@ -1,12 +1,12 @@
 import { FC, memo } from 'react';
-import { useFilmRating } from '../../../hooks/films';
-import { Film } from '../../../types/film';
+import { useFilmRatingLabel } from '../../../../hooks/films.ts';
+import { Film } from '../../../../types/film.ts';
 
-interface OverviewProps {
+interface OverviewTabProps {
   film: Film;
 }
 
-const OverviewComponent: FC<OverviewProps> = ({ film }) => {
+const OverviewTabComponent: FC<OverviewTabProps> = ({ film }) => {
   const {
     rating,
     scoresCount,
@@ -15,14 +15,14 @@ const OverviewComponent: FC<OverviewProps> = ({ film }) => {
     description,
   } = film;
 
-  const filmRatingLevel = useFilmRating(rating);
+  const filmRatingLabel = useFilmRatingLabel(rating);
 
   return (
     <>
       <div className="film-rating">
         <div className="film-rating__score">{rating}</div>
         <p className="film-rating__meta">
-          <span className="film-rating__level">{filmRatingLevel}</span>
+          <span className="film-rating__level">{filmRatingLabel}</span>
           <span className="film-rating__count">{scoresCount} ratings</span>
         </p>
       </div>
@@ -41,4 +41,4 @@ const OverviewComponent: FC<OverviewProps> = ({ film }) => {
   );
 };
 
-export const Overview = memo(OverviewComponent);
+export const OverviewTab = memo(OverviewTabComponent);

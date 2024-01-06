@@ -1,9 +1,9 @@
 import React, { useCallback, useState } from 'react';
-import { SmallFilmCard } from './small-film-card';
 import { useAppSelector } from '../../../../hooks/store';
-import { Spinner } from '../../../spinner/spinner';
-import { ReducerName } from '../../../../types/reducer-name';
 import { Film } from '../../../../types/film';
+import { ReducerName } from '../../../../types/reducer-name';
+import { Spinner } from '../../../spinner/spinner';
+import { SmallFilmCard } from '../small-film-card';
 
 interface FilmsListComponentProps {
   maxLength?: number;

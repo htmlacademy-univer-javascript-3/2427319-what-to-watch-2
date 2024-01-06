@@ -1,14 +1,14 @@
-import { Routes, Route } from 'react-router-dom';
-import { PrivateRoute } from '.';
 import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { AddReview } from '../pages/add-review';
 import { Film } from '../pages/film';
 import { Main } from '../pages/main';
 import { MyList } from '../pages/my-list';
+import { Page404 } from '../pages/page-404';
 import { Player } from '../pages/player';
 import { SignIn } from '../pages/signin';
-import { Page404 } from '../pages/page-404';
 import { RouteLinks } from './consts';
+import { PrivateRoute } from '.';
 
 const AppRouter: React.FC = () => (
   <Routes>
