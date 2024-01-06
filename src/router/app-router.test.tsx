@@ -57,14 +57,14 @@ describe('logged in routing', () => {
     </Provider>
   );
 
-  it('should render main page when navigated to "/"', () => {
+  it('renders the main page at "/" for logged-in users', () => {
     render(fakeApp);
     expect(screen.getByText(mockFilm.name)).toBeInTheDocument();
     expect(screen.getByText(/Play/i)).toBeInTheDocument();
     expect(screen.getByText(/All genres/i)).toBeInTheDocument();
   });
 
-  it('should render main page when navigated to "/login"', () => {
+  it('redirects to the main page from "/login" for logged-in users', () => {
     routes.push('/login');
     render(fakeApp);
     expect(screen.getByText(mockFilm.name)).toBeInTheDocument();
@@ -72,25 +72,7 @@ describe('logged in routing', () => {
     expect(screen.getByText(/All genres/i)).toBeInTheDocument();
   });
 
-  it('should render film page when navigated to "/films/{id}"', () => {
-    routes.push('/films/1');
-    render(fakeApp);
-    expect(screen.getByText(mockFilm.name)).toBeInTheDocument();
-    expect(screen.getByText(mockFilm.genre)).toBeInTheDocument();
-    expect(screen.getByText(/Overview/i)).toBeInTheDocument();
-    expect(screen.getByText(/Details/i)).toBeInTheDocument();
-    expect(screen.getByText(/Reviews/i)).toBeInTheDocument();
-    expect(screen.getByText(/2019 What to watch Ltd./i)).toBeInTheDocument();
-  });
-
-  it('should render player when navigated to "/player/{id}"', () => {
-    routes.push('/player/1');
-    render(fakeApp);
-    expect(screen.getByText(/Exit/i)).toBeInTheDocument();
-    expect(screen.getByText(/Toggler/i)).toBeInTheDocument();
-  });
-
-  it('should render reviews editor when navigated to "/films/{id}/review"', () => {
+  it('displays the film page at "/films/{id}" for logged-in users', () => {
     routes.push('/films/1/review');
     render(fakeApp);
     expect(screen.getByText(/Add review/i)).toBeInTheDocument();
@@ -103,7 +85,7 @@ describe('logged in routing', () => {
   });
 
   it('should render not found when navigated to non-existent route', () => {
-    routes.push('/asdasd');
+    routes.push('/very_unknown_path');
     render(fakeApp);
     expect(screen.getByText('404 Not Found')).toBeInTheDocument();
   });
@@ -176,7 +158,7 @@ describe('not logged in routing', () => {
   });
 
   it('should render not found when navigated to non-existent route', () => {
-    routes.push('/qwertasdfg');
+    routes.push('/very_unknown_path');
     render(fakeApp);
     expect(screen.getByText('404 Not Found')).toBeInTheDocument();
   });

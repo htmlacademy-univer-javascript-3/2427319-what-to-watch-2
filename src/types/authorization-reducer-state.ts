@@ -1,4 +1,4 @@
-import { User } from '../types/user';
+import { User } from './user.ts';
 
 export interface AuthorizationReducerState {
   user: User | null;
