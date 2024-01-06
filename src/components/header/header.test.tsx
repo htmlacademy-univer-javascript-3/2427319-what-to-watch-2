@@ -1,10 +1,10 @@
-import { render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
 import { configureMockStore } from '@jedmao/redux-mock-store';
-import { Header } from './header';
+import { render, screen } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import { MemoryRouter } from 'react-router-dom';
 import { AuthorizationStatus } from '../../types/authorization-status';
 import { ReducerName } from '../../types/reducer-name';
+import { Header } from './header';
 
 const mockStore = configureMockStore();
 

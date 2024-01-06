@@ -1,11 +1,11 @@
+import { configureMockStore } from '@jedmao/redux-mock-store';
 import { render, screen } from '@testing-library/react';
-import { GenreList } from './genre-list';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
-import { configureMockStore } from '@jedmao/redux-mock-store';
 import thunk from 'redux-thunk';
-import { ReducerName } from '../../../../types/reducer-name';
 import { Genre } from '../../../../types/genre';
+import { ReducerName } from '../../../../types/reducer-name';
+import { GenreList } from './genre-list';
 
 const mockStore = configureMockStore([thunk]);
 

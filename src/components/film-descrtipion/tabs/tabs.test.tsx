@@ -1,12 +1,12 @@
 import { render, screen } from '@testing-library/react';
-import { Tabs } from './tabs';
 import { MemoryRouter } from 'react-router-dom';
+import { Tabs } from './tabs';
 
 describe('Tabs Component', () => {
   it('should render tabs correctly', () => {
     render(
       <MemoryRouter>
-        <Tabs active="Overview" />
+        <Tabs activeTab="Overview" />
       </MemoryRouter>
     );
 

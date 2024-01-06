@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { ReducerName } from '../../types/reducer-name';
 import { Genre } from '../../types/genre';
 import { MainReducerState } from '../../types/main-reducer-state';
+import { ReducerName } from '../../types/reducer-name';
+import { setError, setGenre } from '../actions';
 import {
   addReview,
   fetchFavoriteFilms,
@@ -10,7 +11,6 @@ import {
   logout,
   setFavorite,
 } from '../api-actions';
-import { setError, setGenre } from '../actions';
 
 const initialState: MainReducerState = {
   films: [],

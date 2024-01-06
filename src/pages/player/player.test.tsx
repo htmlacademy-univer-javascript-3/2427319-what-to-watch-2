@@ -1,21 +1,21 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { MemoryRouter, Route, Routes } from 'react-router-dom';
-import { Provider } from 'react-redux';
 import { configureMockStore } from '@jedmao/redux-mock-store';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import thunk from 'redux-thunk';
-import { createAPI } from '../../services/api';
-import { State } from '../../types/state';
-import { AuthorizationStatus } from '../../types/authorization-status';
-import { Player } from './player';
+import filmsMock from '../../mocks/films-mock.ts';
 import { RouteLinks } from '../../router/consts';
+import { createAPI } from '../../services/api';
+import { AuthorizationStatus } from '../../types/authorization-status';
 import { ReducerName } from '../../types/reducer-name';
-import films from '../../mocks/films';
+import { State } from '../../types/state';
+import { Player } from './player';
 
 const api = createAPI();
 const middlewares = [thunk.withExtraArgument(api)];
 const mockStore = configureMockStore<State>(middlewares);
 
-const mockFilm = films[0];
+const mockFilm = filmsMock[0];
 
 describe('Player Component', () => {
   it('renders video player with controls', async () => {

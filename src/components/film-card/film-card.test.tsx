@@ -1,16 +1,16 @@
-import { render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
 import { configureMockStore } from '@jedmao/redux-mock-store';
-import films from '../../mocks/films';
-import { FilmCard } from './film-card';
-import { ReducerName } from '../../types/reducer-name';
+import { render, screen } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import { MemoryRouter } from 'react-router-dom';
+import filmsMock from '../../mocks/films-mock.ts';
 import { AuthorizationStatus } from '../../types/authorization-status';
 import { Genre } from '../../types/genre';
+import { ReducerName } from '../../types/reducer-name';
+import { FilmCard } from './film-card';
 
 const mockStore = configureMockStore();
 
-const mockFilm = films[0];
+const mockFilm = filmsMock[0];
 
 describe('FilmCard Component', () => {
   const initialState = {

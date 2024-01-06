@@ -9,13 +9,13 @@ import React, {
   useState,
 } from 'react';
 import { Navigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../hooks/store';
-import { login } from '../../store/api-actions';
-import { ReducerName } from '../../types/reducer-name';
-import { AuthorizationStatus } from '../../types/authorization-status';
-import { Header } from '../../components/header';
 import { Footer } from '../../components/footer';
+import { Header } from '../../components/header';
+import { useAppDispatch, useAppSelector } from '../../hooks/store';
 import { errorHandle } from '../../services/error-handle';
+import { login } from '../../store/api-actions';
+import { AuthorizationStatus } from '../../types/authorization-status';
+import { ReducerName } from '../../types/reducer-name';
 
 const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 

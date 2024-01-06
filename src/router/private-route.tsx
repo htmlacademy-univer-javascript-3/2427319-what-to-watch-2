@@ -1,5 +1,5 @@
-import { Navigate } from 'react-router-dom';
 import { FC } from 'react';
+import { Navigate } from 'react-router-dom';
 import { useAppSelector } from '../hooks/store';
 import { AuthorizationStatus } from '../types/authorization-status';
 import { ReducerName } from '../types/reducer-name';

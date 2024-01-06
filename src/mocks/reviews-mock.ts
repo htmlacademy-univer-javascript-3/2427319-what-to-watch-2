@@ -1,4 +1,4 @@
-const reviews = [
+const reviewsMock = [
   {
     id: 1,
     user: {
@@ -21,4 +21,4 @@ const reviews = [
   }
 ];
 
-export default reviews;
+export default reviewsMock;

@@ -1,12 +1,12 @@
-import { MainReducerState } from '../../types/main-reducer-state';
-import films from '../../mocks/films';
-import { mainReducer } from './main-reducer';
+import filmsMock from '../../mocks/films-mock.ts';
 import { Genre } from '../../types/genre';
-import { fetchFilms, fetchFavoriteFilms, fetchPromo } from '../api-actions';
+import { MainReducerState } from '../../types/main-reducer-state';
 import { setGenre, setError } from '../actions';
+import { fetchFilms, fetchFavoriteFilms, fetchPromo } from '../api-actions';
+import { mainReducer } from './main-reducer';
 
-const mockFilm = films[0];
-const mockFilms = films;
+const mockFilm = filmsMock[0];
+const mockFilms = filmsMock;
 
 describe('main-reducer', () => {
   let state: MainReducerState;

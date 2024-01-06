@@ -1,17 +1,17 @@
 import { configureMockStore } from '@jedmao/redux-mock-store';
 import { Action, ThunkDispatch } from '@reduxjs/toolkit';
 import { render, screen } from '@testing-library/react';
-import { State } from '../types/state';
-import { Genre } from '../types/genre';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import thunk from 'redux-thunk';
-import films from '../mocks/films';
+import filmsMock from '../mocks/films-mock.ts';
 import { createAPI } from '../services/api';
 import { AuthorizationStatus } from '../types/authorization-status';
+import { Genre } from '../types/genre';
 import { ReducerName } from '../types/reducer-name';
+import { State } from '../types/state';
 import AppRouter from './app-router';
-import { ToastContainer } from 'react-toastify';
 
 const api = createAPI();
 const middlewares = [thunk.withExtraArgument(api)];
@@ -20,7 +20,7 @@ const mockStore = configureMockStore<
   Action,
   ThunkDispatch<State, typeof api, Action>
   >(middlewares);
-const mockFilm = films[0];
+const mockFilm = filmsMock[0];
 
 describe('logged in routing', () => {
   const store = mockStore({

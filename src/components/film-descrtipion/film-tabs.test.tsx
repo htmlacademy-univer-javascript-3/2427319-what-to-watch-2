@@ -1,17 +1,17 @@
-import { render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
 import { configureMockStore } from '@jedmao/redux-mock-store';
-import { FilmDescription } from './film-description';
+import { render, screen } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import { MemoryRouter } from 'react-router-dom';
+import filmsMock from '../../mocks/films-mock.ts';
 import { ReducerName } from '../../types/reducer-name';
-import films from '../../mocks/films';
 import { TabTypes } from '../../types/tabs';
+import { FilmTabs } from './film-tabs.tsx';
 
 const mockStore = configureMockStore();
 
-const mockFilm = films[0];
+const mockFilm = filmsMock[0];
 
-describe('FilmDescription Component', () => {
+describe('FilmTabs Component', () => {
   it('should render tabs and the default panel', () => {
     const store = mockStore({
       [ReducerName.Film]: {
@@ -22,7 +22,7 @@ describe('FilmDescription Component', () => {
     render(
       <Provider store={store}>
         <MemoryRouter>
-          <FilmDescription film={mockFilm} />
+          <FilmTabs film={mockFilm} />
         </MemoryRouter>
       </Provider>
     );

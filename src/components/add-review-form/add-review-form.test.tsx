@@ -1,15 +1,15 @@
-import { render, fireEvent, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
 import { configureMockStore } from '@jedmao/redux-mock-store';
+import { Action, ThunkDispatch } from '@reduxjs/toolkit';
+import { render, fireEvent, screen } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import { MemoryRouter } from 'react-router-dom';
+import thunk from 'redux-thunk';
+import filmsMock from '../../mocks/films-mock.ts';
+import { createAPI } from '../../services/api';
 import { AuthorizationStatus } from '../../types/authorization-status';
 import { Genre } from '../../types/genre';
 import { ReducerName } from '../../types/reducer-name';
-import { Action, ThunkDispatch } from '@reduxjs/toolkit';
-import films from '../../mocks/films';
-import { createAPI } from '../../services/api';
 import { State } from '../../types/state';
-import thunk from 'redux-thunk';
 import { AddReviewForm } from './add-review-form';
 
 const api = createAPI();
@@ -19,7 +19,7 @@ const mockStore = configureMockStore<
     Action,
     ThunkDispatch<State, typeof api, Action>
 >(middlewares);
-const mockFilm = films[0];
+const mockFilm = filmsMock[0];
 
 describe('AddReviewForm Component', () => {
   const store = mockStore({

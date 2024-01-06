@@ -30,7 +30,7 @@ const ReviewComponent: FC<Review> = ({ comment, user, date, rating }) => {
   );
 };
 
-const ReviewsComponent: FC = () => {
+const ReviewsTabComponent: FC = () => {
   const reviews = useAppSelector((state) => state[ReducerName.Film].reviews);
 
   return reviews.length ? (
@@ -51,4 +51,4 @@ const ReviewsComponent: FC = () => {
   );
 };
 
-export const Reviews = memo(ReviewsComponent);
+export const ReviewsTab = memo(ReviewsTabComponent);

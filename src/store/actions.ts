@@ -1,8 +1,8 @@
 import { createAction } from '@reduxjs/toolkit';
-import { Film } from '../types/film';
-import { User } from '../types/user';
-import { Review } from '../types/review';
 import { Actions } from '../types/actions';
+import { Film } from '../types/film';
+import { Review } from '../types/review';
+import { User } from '../types/user';
 
 export const setGenre = createAction(Actions.SetGenre, (genre: string) => ({
   payload: genre,

@@ -1,17 +1,17 @@
 import React, { useLayoutEffect } from 'react';
-import { Header } from '../../components/header';
-import { FilmCardButtons } from '../../components/film-card/components/film-card-buttons';
-import { FilmsList } from '../../components/catalog/components/films-list';
-import { Footer } from '../../components/footer';
 import { Navigate, useParams } from 'react-router-dom';
-import { RouteLinks } from '../../router/consts';
+import { FilmsList } from '../../components/catalog/components/films-list';
+import { FilmCardButtons } from '../../components/film-card/components/film-card-buttons';
+import { FilmTabs } from '../../components/film-descrtipion/film-tabs.tsx';
+import { Footer } from '../../components/footer';
+import { Header } from '../../components/header';
 import { Poster } from '../../components/poster';
-import { FilmDescription } from '../../components/film-descrtipion/film-description';
-import { useAppDispatch, useAppSelector } from '../../hooks/store';
 import { Spinner } from '../../components/spinner/spinner';
-import { ReducerName } from '../../types/reducer-name';
+import { useAppDispatch, useAppSelector } from '../../hooks/store';
+import { RouteLinks } from '../../router/consts';
 import { fetchFilm, fetchReviews, fetchSimilar } from '../../store/api-actions';
 import { AuthorizationStatus } from '../../types/authorization-status';
+import { ReducerName } from '../../types/reducer-name';
 import { Page404 } from '../page-404';
 
 const FilmPage: React.FC = () => {
@@ -85,7 +85,7 @@ const FilmPage: React.FC = () => {
               className="film-card__poster--big"
             />
 
-            <FilmDescription film={film} />
+            <FilmTabs film={film} />
           </div>
         </div>
       </section>

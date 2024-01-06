@@ -1,8 +1,8 @@
 import React from 'react';
-import { Header } from '../header';
-import { FilmCardButtons } from './components/film-card-buttons';
-import { Poster } from '../poster';
 import { Film } from '../../types/film';
+import { Header } from '../header';
+import { Poster } from '../poster';
+import { FilmCardButtons } from './components/film-card-buttons';
 
 interface FilmCardProps {
   film: Film;

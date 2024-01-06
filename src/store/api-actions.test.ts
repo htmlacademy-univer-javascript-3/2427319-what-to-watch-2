@@ -2,20 +2,20 @@ import { configureMockStore } from '@jedmao/redux-mock-store';
 import { Action } from '@reduxjs/toolkit';
 import MockAdapter from 'axios-mock-adapter';
 import thunk, { ThunkDispatch } from 'redux-thunk';
-import films from '../mocks/films';
-import reviews from '../mocks/reviews';
+import filmsMock from '../mocks/films-mock.ts';
+import reviewsMock from '../mocks/reviews-mock.ts';
 import { createAPI } from '../services/api';
+import { AuthorizationData } from '../types/authorization-data';
 import { State } from '../types/state';
 import { setFavorite, checkAuth, fetchReviews, fetchFavoriteFilms, fetchFilm, fetchFilms, fetchPromo, fetchSimilar, login, logout, addReview } from './api-actions';
-import { AuthorizationData } from '../types/authorization-data';
 
 describe('async actions', () => {
   const api = createAPI();
   const mockAPI = new MockAdapter(api);
   const middlewares = [thunk.withExtraArgument(api)];
-  const mockFilm = films[0];
-  const mockFilms = films;
-  const mockReviews = reviews;
+  const mockFilm = filmsMock[0];
+  const mockFilms = filmsMock;
+  const mockReviews = reviewsMock;
   const mockAuthorizationData: AuthorizationData = { email: '123@gmail.com', password: '123' };
 
   const mockStore = configureMockStore<

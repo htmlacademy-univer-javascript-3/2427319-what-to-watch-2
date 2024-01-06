@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import { Footer } from './footer';
 import { MemoryRouter } from 'react-router-dom';
+import { Footer } from './footer';
 
 describe('Footer Component', () => {
   it('renders the logo', () => {

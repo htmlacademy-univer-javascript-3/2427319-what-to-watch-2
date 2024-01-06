@@ -1,15 +1,15 @@
-import { fireEvent, render, screen } from '@testing-library/react';
-import { FilmsList } from './films-list';
-import { Provider } from 'react-redux';
 import { configureMockStore } from '@jedmao/redux-mock-store';
+import { fireEvent, render, screen } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import { MemoryRouter } from 'react-router-dom';
+import thunk from 'redux-thunk';
+import filmsMock from '../../../../mocks/films-mock.ts';
 import { ReducerName } from '../../../../types/reducer-name';
 import { State } from '../../../../types/state';
-import thunk from 'redux-thunk';
-import films from '../../../../mocks/films';
-import { MemoryRouter } from 'react-router-dom';
+import { FilmsList } from './films-list';
 import { SmallFilmCard } from './small-film-card';
 
-const mockFilm = films[0];
+const mockFilm = filmsMock[0];
 
 const mockStore = configureMockStore<State>([thunk]);
 

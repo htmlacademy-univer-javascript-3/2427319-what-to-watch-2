@@ -1,14 +1,14 @@
-import { render, screen } from '@testing-library/react';
-import { MemoryRouter, Route, Routes } from 'react-router-dom';
-import { Page404 } from './page-404';
-import { Provider } from 'react-redux';
 import { configureMockStore } from '@jedmao/redux-mock-store';
+import { render, screen } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import thunk from 'redux-thunk';
-import { createAPI } from '../../services/api';
-import { State } from '../../types/state';
-import { AuthorizationStatus } from '../../types/authorization-status';
 import { RouteLinks } from '../../router/consts';
+import { createAPI } from '../../services/api';
+import { AuthorizationStatus } from '../../types/authorization-status';
 import { ReducerName } from '../../types/reducer-name';
+import { State } from '../../types/state';
+import { Page404 } from './page-404';
 
 const api = createAPI();
 const middlewares = [thunk.withExtraArgument(api)];

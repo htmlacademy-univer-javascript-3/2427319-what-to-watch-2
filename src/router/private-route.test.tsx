@@ -1,10 +1,10 @@
-import { render, screen } from '@testing-library/react';
-import { MemoryRouter, Route, Routes } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import PrivateRoute from './private-route';
 import { configureMockStore } from '@jedmao/redux-mock-store';
-import { ReducerName } from '../types/reducer-name';
+import { render, screen } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { AuthorizationStatus } from '../types/authorization-status';
+import { ReducerName } from '../types/reducer-name';
+import PrivateRoute from './private-route';
 
 describe('PrivateRoute', () => {
   const mockStore = configureMockStore([]);

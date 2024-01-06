@@ -6,11 +6,11 @@ import React, {
   useMemo,
 } from 'react';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
-import { RouteLinks } from '../../router/consts';
 import { Spinner } from '../../components/spinner/spinner';
 import { useAppDispatch, useAppSelector } from '../../hooks/store';
-import { ReducerName } from '../../types/reducer-name';
+import { RouteLinks } from '../../router/consts';
 import { fetchFilm } from '../../store/api-actions';
+import { ReducerName } from '../../types/reducer-name';
 import { Page404 } from '../page-404';
 
 const SECONDS_IN_HOUR = 3600;
@@ -73,7 +73,7 @@ const PlayerPage: React.FC = () => {
     return (hours !== '00') ? `${hours}:${minutes}:${seconds}` : `${minutes}:${seconds}`;
   }
 
-  if (isLoading) {
+  if(isLoading){
     return <Spinner view='display' />;
   }
 

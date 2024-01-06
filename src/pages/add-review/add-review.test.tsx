@@ -1,16 +1,16 @@
-import { render, screen } from '@testing-library/react';
-import { MemoryRouter, Route, Routes } from 'react-router-dom';
-import { Provider } from 'react-redux';
 import { configureMockStore } from '@jedmao/redux-mock-store';
-import { AddReview } from './add-review';
-import { ReducerName } from '../../types/reducer-name';
-import { RouteLinks } from '../../router/consts';
-import films from '../../mocks/films';
-import thunk from 'redux-thunk';
 import { ThunkDispatch, Action } from '@reduxjs/toolkit';
+import { render, screen } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import { MemoryRouter, Route, Routes } from 'react-router-dom';
+import thunk from 'redux-thunk';
+import filmsMock from '../../mocks/films-mock.ts';
+import { RouteLinks } from '../../router/consts';
 import { createAPI } from '../../services/api';
-import { State } from '../../types/state';
 import { AuthorizationStatus } from '../../types/authorization-status';
+import { ReducerName } from '../../types/reducer-name';
+import { State } from '../../types/state';
+import { AddReview } from './add-review';
 
 
 const api = createAPI();
@@ -80,7 +80,7 @@ describe('AddReviewPage Component', () => {
     };
     const store = mockStore({
       [ReducerName.Film]: {
-        film: films[0],
+        film: filmsMock[0],
         isLoading: false,
       },
       [ReducerName.Authorzation]: {

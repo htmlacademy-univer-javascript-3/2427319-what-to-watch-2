@@ -1,12 +1,13 @@
 import React, { useState, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks/store';
 import { addReview } from '../../store/api-actions';
-import { useNavigate } from 'react-router-dom';
 
 const RATING = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
 
 const MAX_LEN_REVIEW = 400;
 const MIN_LEN_REVIEW = 50;
+
 interface AddReviewFormProps {
   filmId: string;
 }

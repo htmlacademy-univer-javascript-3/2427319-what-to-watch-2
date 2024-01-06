@@ -1,10 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { AppDispatch, State } from '../types/state';
 import { AxiosInstance } from 'axios';
+import { AuthorizationData } from '../types/authorization-data';
 import { Film } from '../types/film';
 import { Review, IAddReview } from '../types/review';
+import { AppDispatch, State } from '../types/state';
 import { User } from '../types/user';
-import { AuthorizationData } from '../types/authorization-data';
 
 export const fetchFilms = createAsyncThunk<
   Film[],

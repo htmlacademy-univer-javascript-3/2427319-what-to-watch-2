@@ -2,11 +2,11 @@ import { FC, memo, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { TTabs, TabTypes } from '../../../types/tabs';
 interface TabsProps {
-  active: TTabs;
+  activeTab: TTabs;
   onClick?: (tab: TTabs) => void;
 }
 
-const TabsComponent: FC<TabsProps> = ({ active, onClick }) => {
+const TabsComponent: FC<TabsProps> = ({ activeTab, onClick }) => {
   const handleTabClick = useCallback(
     (tab: TTabs) => {
       if (onClick) {
@@ -25,7 +25,7 @@ const TabsComponent: FC<TabsProps> = ({ active, onClick }) => {
           <li
             key={tab}
             className={`film-nav__item ${
-              tab === active ? 'film-nav__item--active' : ''
+              tab === activeTab ? 'film-nav__item--active' : ''
             }`}
             onClick={() => handleTabClick(tab)}
           >

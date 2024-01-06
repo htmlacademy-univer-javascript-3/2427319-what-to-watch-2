@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
-import { Genre } from './genre';
 import { useAppSelector } from '../../../../hooks/store';
 import { ReducerName } from '../../../../types/reducer-name';
+import { Genre } from './genre';
 
 const GenreListComponent: React.FC = () => {
   const activeGenre = useAppSelector((state) => state[ReducerName.Main].currentGenre);

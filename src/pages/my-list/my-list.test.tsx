@@ -1,20 +1,20 @@
-import { render, screen, waitFor } from '@testing-library/react';
-import { MemoryRouter, Route, Routes } from 'react-router-dom';
-import { Provider } from 'react-redux';
 import { configureMockStore } from '@jedmao/redux-mock-store';
+import { render, screen, waitFor } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import thunk from 'redux-thunk';
+import filmsMock from '../../mocks/films-mock.ts';
 import { createAPI } from '../../services/api';
-import { State } from '../../types/state';
 import { AuthorizationStatus } from '../../types/authorization-status';
-import { MyList } from './my-list';
 import { ReducerName } from '../../types/reducer-name';
-import films from '../../mocks/films';
+import { State } from '../../types/state';
+import { MyList } from './my-list';
 
 const api = createAPI();
 const middlewares = [thunk.withExtraArgument(api)];
 const mockStore = configureMockStore<State>(middlewares);
 
-const film = films[0];
+const film = filmsMock[0];
 
 
 describe('MyListPage Component', () => {

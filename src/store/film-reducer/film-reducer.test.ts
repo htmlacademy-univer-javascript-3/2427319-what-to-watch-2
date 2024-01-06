@@ -1,12 +1,12 @@
+import filmsMock from '../../mocks/films-mock.ts';
+import reviewsMock from '../../mocks/reviews-mock.ts';
 import { FilmReducerState } from '../../types/film-reducer-state';
-import films from '../../mocks/films';
-import { filmReducer } from './film-reducer';
 import { fetchReviews, fetchFilm, fetchSimilar } from '../api-actions';
-import reviews from '../../mocks/reviews';
+import { filmReducer } from './film-reducer';
 
-const mockFilm = films[0];
-const mockFilms = films;
-const mockReviews = reviews;
+const mockFilm = filmsMock[0];
+const mockFilms = filmsMock;
+const mockReviews = reviewsMock;
 
 describe('film-reducer', () => {
   let state: FilmReducerState;

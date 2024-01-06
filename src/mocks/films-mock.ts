@@ -1,6 +1,6 @@
 import { Film } from '../types/film';
 
-const films: Film[] = [
+const filmsMock: Film[] = [
   {
     name: 'Snatch',
     posterImage: 'https://10.react.pages.academy/static/film/poster/Snatch.jpg',
@@ -454,4 +454,4 @@ const films: Film[] = [
     previewVideoLink: 'https://10.react.pages.academy/static/film/video/traffic.mp4'
   }];
 
-export default films;
+export default filmsMock;

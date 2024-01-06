@@ -1,12 +1,12 @@
 import { render, screen } from '@testing-library/react';
-import { Details } from './details';
-import films from '../../../mocks/films';
+import filmsMock from '../../../mocks/films-mock.ts';
+import { DetailsTab } from './details-tab.tsx';
 
-const mockFilm = films[0];
+const mockFilm = filmsMock[0];
 
 describe('FilmDetails Component', () => {
   it('should render film details correctly', () => {
-    render(<Details film={mockFilm} />);
+    render(<DetailsTab film={mockFilm} />);
 
     expect(screen.getByText(/Director/)).toBeInTheDocument();
     expect(screen.getByText(/Starring/)).toBeInTheDocument();
