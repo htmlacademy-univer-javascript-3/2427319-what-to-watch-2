@@ -9,11 +9,10 @@ import { State } from '../../../../types/state';
 import { FilmsList } from './films-list';
 
 const mockFilm = filmsMock[0];
-
 const mockStore = configureMockStore<State>([thunk]);
 
 describe('FilmsList Component', () => {
-  it('should render films correctly when loading is complete', () => {
+  it('renders films correctly when loading is complete', () => {
     const store = mockStore({
       [ReducerName.Main]: {
         genreFilms: [mockFilm],
@@ -27,15 +26,13 @@ describe('FilmsList Component', () => {
           <FilmsList maxLength={1} />
         </Provider>
       </MemoryRouter>
-
     );
 
     const filmTitle = screen.getByTestId('sample-film-title');
-
     expect(filmTitle).toBeInTheDocument();
   });
 
-  it('should render loading spinner when films are loading', () => {
+  it('renders loading spinner when films are loading', () => {
     const store = mockStore({
       [ReducerName.Main]: {
         genreFilms: [],
@@ -44,9 +41,11 @@ describe('FilmsList Component', () => {
     });
 
     render(
-      <Provider store={store}>
-        <FilmsList maxLength={1} />
-      </Provider>
+      <MemoryRouter>
+        <Provider store={store}>
+          <FilmsList maxLength={1} />
+        </Provider>
+      </MemoryRouter>
     );
 
     const spinner = screen.getByTestId('spinner');

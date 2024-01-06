@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import filmsMock from '../../../mocks/films-mock.ts';
+import filmsMock from '../../../../mocks/films-mock.ts';
 import { DetailsTab } from './details-tab.tsx';
 
 const mockFilm = filmsMock[0];

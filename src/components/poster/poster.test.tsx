@@ -1,28 +1,27 @@
 import { render, screen } from '@testing-library/react';
 import { Poster } from './poster';
 
-
 const POSTER_WIDTH = 200;
 const POSTER_HEIGHT = 300;
 
-describe('Poster Component', () => {
-  it('should render the poster image with the provided src and alt text', () => {
+describe('Functionality Check for Poster Component', () => {
+  it('verifies the rendering of poster image with correct source and alternate text', () => {
     render(
       <Poster src="poster-image.jpg" alt="Movie Poster" />
     );
 
-    const posterImage = screen.getByAltText('Movie Poster');
-    expect(posterImage).toBeInTheDocument();
-    expect(posterImage).toHaveAttribute('src', 'poster-image.jpg');
+    const posterImg = screen.getByAltText('Movie Poster');
+    expect(posterImg).toBeInTheDocument();
+    expect(posterImg).toHaveAttribute('src', 'poster-image.jpg');
   });
 
-  it('should set custom width and height if provided', () => {
+  it('confirms the application of custom dimensions to the poster image', () => {
     render(
       <Poster src="poster-image.jpg" alt="Movie Poster" width={POSTER_WIDTH} height={POSTER_HEIGHT} />
     );
 
-    const posterImage = screen.getByAltText('Movie Poster');
-    expect(posterImage).toHaveAttribute('width', POSTER_WIDTH.toString());
-    expect(posterImage).toHaveAttribute('height', POSTER_HEIGHT.toString());
+    const posterImg = screen.getByAltText('Movie Poster');
+    expect(posterImg).toHaveAttribute('width', POSTER_WIDTH.toString());
+    expect(posterImg).toHaveAttribute('height', POSTER_HEIGHT.toString());
   });
 });

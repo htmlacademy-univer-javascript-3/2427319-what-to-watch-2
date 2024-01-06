@@ -9,7 +9,6 @@ import { ReducerName } from '../../types/reducer-name';
 import { FilmCard } from './film-card';
 
 const mockStore = configureMockStore();
-
 const mockFilm = filmsMock[0];
 
 describe('FilmCard Component', () => {
@@ -36,9 +35,8 @@ describe('FilmCard Component', () => {
     },
   };
 
-  it('should render the film card with correct details', () => {
+  beforeEach(() => {
     const store = mockStore(initialState);
-
     render(
       <Provider store={store}>
         <MemoryRouter>
@@ -46,25 +44,16 @@ describe('FilmCard Component', () => {
         </MemoryRouter>
       </Provider>
     );
+  });
 
+  it('renders the film card with correct details', () => {
     expect(screen.getByText(mockFilm.name)).toBeInTheDocument();
     expect(screen.getByText(mockFilm.genre)).toBeInTheDocument();
     expect(screen.getByText(mockFilm.released)).toBeInTheDocument();
   });
 
-  it('should have the correct alt text for the background image', () => {
-    const store = mockStore(initialState);
-
-    render(
-      <Provider store={store}>
-        <MemoryRouter>
-          <FilmCard film={mockFilm} />
-        </MemoryRouter>
-      </Provider>
-    );
-
+  it('has the correct alt text for the background image', () => {
     const backgroundImageElement = screen.getByTestId('film-background-image');
-
     expect(backgroundImageElement).toHaveAttribute('alt', mockFilm.name);
   });
 });

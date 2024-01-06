@@ -1,7 +1,7 @@
 import { FC, memo } from 'react';
-import { useAppSelector } from '../../../hooks/store';
-import { ReducerName } from '../../../types/reducer-name';
-import { Review } from '../../../types/review';
+import { useAppSelector } from '../../../../hooks/store.ts';
+import { ReducerName } from '../../../../types/reducer-name.ts';
+import { Review } from '../../../../types/review.ts';
 
 const ReviewComponent: FC<Review> = ({ comment, user, date, rating }) => {
   const getDateString = (postDate: Date) =>

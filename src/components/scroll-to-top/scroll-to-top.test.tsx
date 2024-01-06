@@ -3,8 +3,8 @@ import { act } from 'react-dom/test-utils';
 import { MemoryRouter } from 'react-router-dom';
 import ScrollToTop from './scroll-to-top';
 
-describe('ScrollToTop Component', () => {
-  it('scrolls to the top when the location changes', () => {
+describe('Evaluation of ScrollToTop Component Behavior', () => {
+  it('ensures automatic scrolling to top on route change', () => {
     const { unmount } = render(
       <MemoryRouter initialEntries={['/home']}>
         <ScrollToTop />
@@ -12,7 +12,7 @@ describe('ScrollToTop Component', () => {
     );
 
     act(() => {
-      global.history.pushState({}, 'About', '/about');
+      global.history.pushState({}, 'About Page', '/about');
     });
 
     expect(window.scrollY).toBe(0);

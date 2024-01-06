@@ -2,7 +2,7 @@ import { configureMockStore } from '@jedmao/redux-mock-store';
 import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
-import { ReducerName } from '../../../types/reducer-name';
+import { ReducerName } from '../../../../types/reducer-name.ts';
 import { ReviewsTab } from './reviews-tab.tsx';
 
 const mockStore = configureMockStore();

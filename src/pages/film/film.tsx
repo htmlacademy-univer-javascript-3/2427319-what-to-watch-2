@@ -14,6 +14,8 @@ import { AuthorizationStatus } from '../../types/authorization-status';
 import { ReducerName } from '../../types/reducer-name';
 import { Page404 } from '../page-404';
 
+
+const MAX_SIMILAR_LENGTH_LIST = 4;
 const FilmPage: React.FC = () => {
   const { id } = useParams();
 
@@ -93,7 +95,7 @@ const FilmPage: React.FC = () => {
         {!!similar.length && (
           <section className="catalog catalog--like-this">
             <h2 className="catalog__title">More like this</h2>
-            <FilmsList films={similar} />
+            <FilmsList films={similar} maxLength={MAX_SIMILAR_LENGTH_LIST}/>
           </section>
         )}
 

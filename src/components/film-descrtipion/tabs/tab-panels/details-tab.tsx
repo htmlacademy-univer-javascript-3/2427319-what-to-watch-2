@@ -1,5 +1,5 @@
 import { FC, ReactNode, memo } from 'react';
-import { Film } from '../../../types/film';
+import { Film } from '../../../../types/film.ts';
 interface FilmDetailsItemProps {
   name: string;
   children: ReactNode;

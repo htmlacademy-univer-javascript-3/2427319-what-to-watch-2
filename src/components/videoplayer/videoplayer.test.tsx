@@ -1,34 +1,34 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { VideoPlayer } from './videoplayer';
 
-const mockProps = {
-  src: 'mock-video.mp4',
-  poster: 'mock-poster.jpg',
+const testProps = {
+  src: 'test-video.mp4',
+  poster: 'test-poster.jpg',
 };
 
-describe('VideoPlayer Component', () => {
-  it('renders video player with correct attributes', () => {
-    render(<VideoPlayer {...mockProps} />);
+describe('Assessment of VideoPlayer Component Features', () => {
+  it('ensures video player is loaded with specified properties', () => {
+    render(<VideoPlayer {...testProps} />);
 
-    const videoPlayer = screen.getByTestId('video-player');
+    const videoElement = screen.getByTestId('video-player');
 
-    expect(videoPlayer).toBeInTheDocument();
-    expect(videoPlayer.tagName).toBe('VIDEO');
-    expect(videoPlayer).toHaveAttribute('src', mockProps.src);
-    expect(videoPlayer).toHaveAttribute('poster', mockProps.poster);
-    expect(videoPlayer).toHaveClass('player__video');
-    expect(videoPlayer).toHaveAttribute('loop');
+    expect(videoElement).toBeInTheDocument();
+    expect(videoElement.tagName).toBe('VIDEO');
+    expect(videoElement).toHaveAttribute('src', testProps.src);
+    expect(videoElement).toHaveAttribute('poster', testProps.poster);
+    expect(videoElement).toHaveClass('player__video');
+    expect(videoElement).toHaveAttribute('loop');
   });
 
-  it('plays the video after a delay', async () => {
-    render(<VideoPlayer {...mockProps} />);
+  it('validates video play functionality after set delay', async () => {
+    render(<VideoPlayer {...testProps} />);
 
-    const videoPlayer: HTMLVideoElement = screen.getByTestId('video-player');
-    expect(videoPlayer.paused).toBe(true);
+    const videoElement: HTMLVideoElement = screen.getByTestId('video-player');
+    expect(videoElement.paused).toBe(true);
 
     await waitFor(() => {
       setTimeout(() => {
-        expect(videoPlayer.paused).toBe(false);
+        expect(videoElement.paused).toBe(false);
       }, 1000);
     });
   });

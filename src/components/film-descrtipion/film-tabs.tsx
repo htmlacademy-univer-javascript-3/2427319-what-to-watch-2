@@ -1,10 +1,10 @@
 import { FC, memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { Film } from '../../types/film';
 import { TTabs, TabTypes } from '../../types/tabs';
-import { DetailsTab as FilmDetails } from './tab-panels/details-tab.tsx';
-import { OverviewTab } from './tab-panels/overview-tab.tsx';
-import { ReviewsTab as FilmReviews } from './tab-panels/reviews-tab.tsx';
 import { Tabs } from './tabs';
+import { DetailsTab as FilmDetails } from './tabs/tab-panels/details-tab.tsx';
+import { OverviewTab } from './tabs/tab-panels/overview-tab.tsx';
+import { ReviewsTab as FilmReviews } from './tabs/tab-panels/reviews-tab.tsx';
 
 interface FilmTabsProps {
   film: Film;

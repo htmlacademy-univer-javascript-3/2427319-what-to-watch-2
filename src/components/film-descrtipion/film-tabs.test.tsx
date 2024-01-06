@@ -8,11 +8,10 @@ import { TabTypes } from '../../types/tabs';
 import { FilmTabs } from './film-tabs.tsx';
 
 const mockStore = configureMockStore();
-
 const mockFilm = filmsMock[0];
 
 describe('FilmTabs Component', () => {
-  it('should render tabs and the default panel', () => {
+  beforeEach(() => {
     const store = mockStore({
       [ReducerName.Film]: {
         film: mockFilm,
@@ -26,11 +25,13 @@ describe('FilmTabs Component', () => {
         </MemoryRouter>
       </Provider>
     );
+  });
 
+  it('renders all tabs and the default panel', () => {
     const tabs = Object.values(TabTypes);
 
-    for (const tab of tabs) {
+    tabs.forEach((tab) => {
       expect(screen.getByText(tab)).toBeInTheDocument();
-    }
+    });
   });
 });

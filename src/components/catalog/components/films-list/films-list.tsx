@@ -3,7 +3,7 @@ import { useAppSelector } from '../../../../hooks/store';
 import { Film } from '../../../../types/film';
 import { ReducerName } from '../../../../types/reducer-name';
 import { Spinner } from '../../../spinner/spinner';
-import { SmallFilmCard } from './small-film-card';
+import { SmallFilmCard } from '../small-film-card';
 
 interface FilmsListComponentProps {
   maxLength?: number;

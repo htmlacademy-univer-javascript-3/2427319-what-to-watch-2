@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
-import { useFilmRatingLabel } from '../../../hooks/films';
-import { Film } from '../../../types/film';
+import { useFilmRatingLabel } from '../../../../hooks/films.ts';
+import { Film } from '../../../../types/film.ts';
 
 interface OverviewTabProps {
   film: Film;
