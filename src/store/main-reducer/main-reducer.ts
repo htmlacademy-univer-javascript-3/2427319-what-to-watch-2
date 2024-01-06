@@ -3,6 +3,7 @@ import { ReducerName } from '../../types/reducer-name';
 import { Genre } from '../../types/genre';
 import { MainReducerState } from '../../types/main-reducer-state';
 import {
+  addReview,
   fetchFavoriteFilms,
   fetchFilms,
   fetchPromo,
@@ -14,12 +15,13 @@ import { setError, setGenre } from '../actions';
 const initialState: MainReducerState = {
   films: [],
   genreFilms: [],
-  currentGenre: Genre.DEFAULT_GENRE,
+  currentGenre: Genre.DefaultGenre,
   isFilmsLoading: false,
   error: null,
   promo: null,
   favoriteFilms: [],
   favoriteCount: 0,
+  isPromoLoading: false,
 };
 
 export const mainReducer = createSlice({
@@ -31,7 +33,7 @@ export const mainReducer = createSlice({
       .addCase(setGenre, (state, action) => {
         state.currentGenre = action.payload;
         state.genreFilms =
-          action.payload === Genre.DEFAULT_GENRE
+          action.payload === Genre.DefaultGenre
             ? state.films
             : state.films.filter((film) => film.genre === action.payload);
       })
@@ -59,6 +61,14 @@ export const mainReducer = createSlice({
       })
       .addCase(fetchPromo.fulfilled, (state, action) => {
         state.promo = action.payload;
+        state.isPromoLoading = false;
+
+      })
+      .addCase(fetchPromo.rejected, (state) => {
+        state.isPromoLoading = false;
+      })
+      .addCase(fetchPromo.pending, (state) => {
+        state.isPromoLoading = true;
       })
       .addCase(setFavorite.fulfilled, (state, action) => {
         if (state.promo && action.payload.id === state.promo.id) {
@@ -69,6 +79,10 @@ export const mainReducer = createSlice({
       .addCase(logout.fulfilled, (state) => {
         state.favoriteFilms = [];
         state.favoriteCount = 0;
+      }).addCase(addReview.fulfilled, (state, action) => {
+        state.error = null;
+
+        action.payload.backToFilm();
       });
   },
 });

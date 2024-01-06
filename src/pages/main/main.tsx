@@ -6,20 +6,28 @@ import { useAppDispatch, useAppSelector } from '../../hooks/store';
 import { Spinner } from '../../components/spinner/spinner';
 import { ReducerName } from '../../types/reducer-name';
 import { fetchPromo } from '../../store/api-actions';
+import { Page404 } from '../page-404';
 
 const MainPage: React.FC = () => {
   const dispatch = useAppDispatch();
-  const promo = useAppSelector((state) => state[ReducerName.Main].promo);
+  const { isPromoLoading, promo } = useAppSelector((state) => state[ReducerName.Main]);
 
   useLayoutEffect(() => {
-    dispatch(fetchPromo());
+    let isMounted = true;
+
+    if (isMounted) {
+      dispatch(fetchPromo());
+    }
+    return () => {
+      isMounted = false;
+    };
   }, [dispatch]);
 
-  if(!promo) {
+  if (isPromoLoading) {
     return <Spinner />;
   }
 
-  return (
+  return promo ? (
     <>
       <FilmCard film={promo} />
       <div className="page-content">
@@ -27,6 +35,8 @@ const MainPage: React.FC = () => {
         <Footer />
       </div>
     </>
+  ) : (
+    <Page404 />
   );
 };
 export const Main = React.memo(MainPage);

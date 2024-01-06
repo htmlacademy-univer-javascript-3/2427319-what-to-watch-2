@@ -94,7 +94,7 @@ const SignInPage: React.FC = () => {
 
   const pageTitle = useMemo(() => <h1 className="page-title user-page__title">Sign in</h1>, []);
 
-  if (authStatus === AuthorizationStatus.AUTHORIZED) {
+  if (authStatus === AuthorizationStatus.Authorized) {
     return <Navigate to="/" />;
   }
 
@@ -108,7 +108,7 @@ const SignInPage: React.FC = () => {
         <form onSubmit={handleSubmit} className="sign-in__form">
           {error && (
             <div className="sign-in__message">
-              <p>{error}</p>
+              <p data-testid="error">{error}</p>
             </div>
           )}
           <div className="sign-in__fields">
@@ -134,7 +134,7 @@ const SignInPage: React.FC = () => {
             />
           </div>
           <div className="sign-in__submit">
-            <button className="sign-in__btn" type="submit">
+            <button className="sign-in__btn" data-testid="signin-button" type="submit">
               Sign in
             </button>
           </div>

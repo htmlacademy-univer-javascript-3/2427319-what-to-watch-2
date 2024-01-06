@@ -11,6 +11,7 @@ import { createAPI } from '../services/api';
 import { AuthorizationStatus } from '../types/authorization-status';
 import { ReducerName } from '../types/reducer-name';
 import AppRouter from './app-router';
+import { ToastContainer } from 'react-toastify';
 
 const api = createAPI();
 const middlewares = [thunk.withExtraArgument(api)];
@@ -24,7 +25,7 @@ const mockFilm = films[0];
 describe('logged in routing', () => {
   const store = mockStore({
     [ReducerName.Authorzation]: {
-      authorizationStatus: AuthorizationStatus.AUTHORIZED,
+      authorizationStatus: AuthorizationStatus.Authorized,
       user: null,
     },
     [ReducerName.Film]: {
@@ -36,7 +37,7 @@ describe('logged in routing', () => {
     [ReducerName.Main]: {
       films: [mockFilm],
       genreFilms: [],
-      currentGenre: Genre.DEFAULT_GENRE,
+      currentGenre: Genre.DefaultGenre,
       isFilmsLoading: false,
       error: null,
       promo: mockFilm,
@@ -51,6 +52,7 @@ describe('logged in routing', () => {
     <Provider store={store}>
       <MemoryRouter initialEntries={routes}>
         <AppRouter />
+        <ToastContainer position='bottom-right' />
       </MemoryRouter>
     </Provider>
   );
@@ -110,7 +112,7 @@ describe('logged in routing', () => {
 describe('not logged in routing', () => {
   const store = mockStore({
     [ReducerName.Authorzation]: {
-      authorizationStatus: AuthorizationStatus.NOT_AUTHORIZED,
+      authorizationStatus: AuthorizationStatus.Unauthorized,
       user: null,
     },
     [ReducerName.Film]: {
@@ -122,7 +124,7 @@ describe('not logged in routing', () => {
     [ReducerName.Main]: {
       films: [mockFilm],
       genreFilms: [],
-      currentGenre: Genre.DEFAULT_GENRE,
+      currentGenre: Genre.DefaultGenre,
       isFilmsLoading: false,
       error: null,
       promo: mockFilm,

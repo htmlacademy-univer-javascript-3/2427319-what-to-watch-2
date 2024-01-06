@@ -12,7 +12,7 @@ describe('film-reducer', () => {
 
   beforeEach(() => {
     state = {
-      authorizationStatus: AuthorizationStatus.IDLE,
+      authorizationStatus: AuthorizationStatus.Idle,
       user: null
     };
   });
@@ -20,7 +20,7 @@ describe('film-reducer', () => {
   it('without additional parameters should return initial state', () => {
     expect(authorizationReducer.reducer(void 0, { type: 'UNKNOWN_ACTION' }))
       .toEqual({
-        authorizationStatus: AuthorizationStatus.IDLE,
+        authorizationStatus: AuthorizationStatus.Idle,
         user: null
       });
   });
@@ -28,7 +28,7 @@ describe('film-reducer', () => {
   describe('login test', () => {
     it('should set authorizationStatus AUTHORIZED on fulfilled', () => {
       expect(authorizationReducer.reducer(state, { type: login.fulfilled.type, payload: mockUser }).authorizationStatus)
-        .toEqual(AuthorizationStatus.AUTHORIZED);
+        .toEqual(AuthorizationStatus.Authorized);
     });
     it('should set user on fulfilled', () => {
       expect(authorizationReducer.reducer(state, { type: login.fulfilled.type, payload: mockUser }).user)
@@ -43,7 +43,7 @@ describe('film-reducer', () => {
     });
     it('should set authorizationStatus NOT_AUTHORIZED on fulfilled', () => {
       expect(authorizationReducer.reducer(state, { type: logout.fulfilled.type }).authorizationStatus)
-        .toEqual(AuthorizationStatus.NOT_AUTHORIZED);
+        .toEqual(AuthorizationStatus.Unauthorized);
     });
   });
 
@@ -54,11 +54,11 @@ describe('film-reducer', () => {
     });
     it('should set authorizationStatus AUTHORIZED on fulfilled', () => {
       expect(authorizationReducer.reducer(state, { type: checkAuth.fulfilled.type, payload: mockUser }).authorizationStatus)
-        .toEqual(AuthorizationStatus.AUTHORIZED);
+        .toEqual(AuthorizationStatus.Authorized);
     });
     it('should set authorizationStatus NOT_AUTHORIZED on rejected', () => {
       expect(authorizationReducer.reducer(state, { type: checkAuth.rejected.type, payload: mockUser }).authorizationStatus)
-        .toEqual(AuthorizationStatus.NOT_AUTHORIZED);
+        .toEqual(AuthorizationStatus.Unauthorized);
     });
   });
 });

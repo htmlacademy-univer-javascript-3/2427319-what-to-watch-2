@@ -12,7 +12,7 @@ const PrivateRoute: FC<PrivateRouteProps> = ({ children }) => {
   const authorizationStatus = useAppSelector(
     (state) => state[ReducerName.Authorzation].authorizationStatus
   );
-  const notAuth = authorizationStatus === AuthorizationStatus.NOT_AUTHORIZED;
+  const notAuth = authorizationStatus === AuthorizationStatus.Unauthorized;
 
   return !notAuth ? children : <Navigate to={'/login'} />;
 };

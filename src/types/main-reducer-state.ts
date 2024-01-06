@@ -9,4 +9,5 @@ export interface MainReducerState {
   promo: null | Film;
   favoriteFilms: Film[];
   favoriteCount: number;
+  isPromoLoading: boolean;
 }

@@ -9,13 +9,21 @@ const VideoPlayerComponent: React.FC<VideoPlayerProps> = ({ src, poster }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    setTimeout(() => {
-      videoRef.current?.play();
-    }, 1000);
+    let isMounted = true;
+
+    if (isMounted) {
+      setTimeout(() => {
+        videoRef.current?.play();
+      }, 1000);
+    }
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
+
   return (
-    <video ref={videoRef} src={src} poster={poster} className="player__video" loop muted>
+    <video data-testid="video-player" ref={videoRef} src={src} poster={poster} className="player__video" loop muted>
       <source src={src} type="video/mp4" />
     </video>
   );

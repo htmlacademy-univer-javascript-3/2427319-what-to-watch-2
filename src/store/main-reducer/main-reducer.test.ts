@@ -16,8 +16,9 @@ describe('main-reducer', () => {
       promo: null,
       favoriteFilms: [],
       genreFilms: [],
-      currentGenre: Genre.DEFAULT_GENRE,
+      currentGenre: Genre.DefaultGenre,
       isFilmsLoading: false,
+      isPromoLoading: false,
       error: null,
       films: [],
       favoriteCount: 0
@@ -30,9 +31,10 @@ describe('main-reducer', () => {
         promo: null,
         favoriteFilms: [],
         genreFilms: [],
-        currentGenre: Genre.DEFAULT_GENRE,
+        currentGenre: Genre.DefaultGenre,
         isFilmsLoading: false,
         error: null,
+        isPromoLoading: false,
         films: [],
         favoriteCount: 0
       });

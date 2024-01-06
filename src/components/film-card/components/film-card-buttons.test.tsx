@@ -4,11 +4,11 @@ import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 import thunk from 'redux-thunk';
-import { createAPI } from '../../../services/api';
 import { State } from '../../../types/state';
 import { AuthorizationStatus } from '../../../types/authorization-status';
 import { FilmCardButtons } from './film-card-buttons';
 import { ReducerName } from '../../../types/reducer-name';
+import { createAPI } from '../../../services/api';
 
 const api = createAPI();
 const middlewares = [thunk.withExtraArgument(api)];
@@ -24,7 +24,7 @@ describe('FilmCardButtons Component', () => {
       favoriteCount: 10,
     },
     [ReducerName.Authorzation]: {
-      authorizationStatus: AuthorizationStatus.AUTHORIZED,
+      authorizationStatus: AuthorizationStatus.Authorized,
     },
   });
 

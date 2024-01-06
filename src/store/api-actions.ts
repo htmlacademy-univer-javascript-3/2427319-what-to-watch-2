@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AppDispatch, State } from '../types/state';
 import { AxiosInstance } from 'axios';
 import { Film } from '../types/film';
-import { Review } from '../types/review';
+import { Review, IAddReview } from '../types/review';
 import { User } from '../types/user';
 import { AuthorizationData } from '../types/authorization-data';
 
@@ -137,14 +137,14 @@ export const setFavorite = createAsyncThunk<
   return data;
 });
 
-export const addReview = createAsyncThunk<
-  void,
-  { comment: string; rating: number; filmId: string },
+export const addReview = createAsyncThunk<IAddReview,
+  { comment: string; rating: number; filmId: string; backToFilm: () => void },
   {
     dispatch: AppDispatch;
     state: State;
     extra: AxiosInstance;
   }
->('/comments/id', ({ comment, rating, filmId }, { extra: api }) => {
-  api.post(`/comments/${filmId}`, { comment, rating });
-});
+    >('/comments/id', async ({ comment, rating, filmId, backToFilm }, { extra: api }) => {
+      const { data } = await api.post<Review>(`/comments/${filmId}`, { comment, rating });
+      return { data, backToFilm };
+    });

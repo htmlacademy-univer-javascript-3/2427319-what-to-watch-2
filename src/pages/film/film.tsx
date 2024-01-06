@@ -20,7 +20,7 @@ const FilmPage: React.FC = () => {
   const isAuth =
     useAppSelector(
       (state) => state[ReducerName.Authorzation].authorizationStatus
-    ) === AuthorizationStatus.AUTHORIZED;
+    ) === AuthorizationStatus.Authorized;
 
   const dispatch = useAppDispatch();
   const film = useAppSelector((state) => state[ReducerName.Film].film);
@@ -31,11 +31,16 @@ const FilmPage: React.FC = () => {
   const similar = useAppSelector((state) => state[ReducerName.Film].similar);
 
   useLayoutEffect(() => {
-    if (id) {
+    let isMounted = true;
+
+    if (isMounted && id) {
       dispatch(fetchFilm(id));
       dispatch(fetchSimilar(id));
       dispatch(fetchReviews(id));
     }
+    return () => {
+      isMounted = false;
+    };
   }, [id, dispatch]);
 
   if (isLoading) {
