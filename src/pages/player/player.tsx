@@ -109,6 +109,7 @@ const PlayerPage: React.FC = () => {
             />
             <div
               className="player__toggler"
+              style={{left: `${progress}%`}}
             >
               Toggler
             </div>
